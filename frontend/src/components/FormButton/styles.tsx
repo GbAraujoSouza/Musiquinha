@@ -1,4 +1,5 @@
 import styled from "styled-components/native";
+import { BoldText } from "../../theme/globalFonts";
 
 export const LoginButton = styled.Pressable`
   background-color: ${({ theme }) => theme.COLORS.MAUVE};
@@ -7,7 +8,6 @@ export const LoginButton = styled.Pressable`
   align-items: center;
 `;
 
-export const LoginButtonText = styled.Text`
+export const LoginButtonText = styled(BoldText)`
   color: ${({ theme }) => theme.COLORS.BASE};
-  font-weight: bold;
 `
