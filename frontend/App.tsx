@@ -12,6 +12,7 @@ import { useEffect } from "react";
 import Login from "./src/pages/Login";
 import { ThemeProvider } from "styled-components/native";
 import theme from "./src/theme";
+import Register from "./src/pages/Register";
 
 SplashScreen.preventAutoHideAsync();
 
@@ -41,7 +42,7 @@ export default function App() {
 
   return (
     <ThemeProvider theme={theme}>
-      <Login />
+      <Register />
     </ThemeProvider>
   );
 }

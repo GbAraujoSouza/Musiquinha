@@ -1,5 +1,5 @@
 import styled from "styled-components/native";
-import { RegularText, SemiboldText } from "../../theme/globalFonts";
+import { MediumText, RegularText, SemiboldText } from "../../theme/globalFonts";
 
 export const FormContainer = styled.SafeAreaView`
   flex: 1;
@@ -36,6 +36,10 @@ export const InputSection = styled.View`
   align-items: flex-start;
   gap: 0.5rem;
 `;
+
+export const StyledLabel = styled(MediumText)`
+  font-size: 1rem;
+`
 
 export const StyledTextInput = styled.TextInput.attrs(({ theme }) => ({
   placeholderTextColor: theme.COLORS.OVERLAY0,
