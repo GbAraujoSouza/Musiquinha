@@ -8,5 +8,15 @@ export default {
     PEACH: "#FAB387",
     BLUE: "#B4BEFE",
     TEXT: "#CDD6F4",
+    OVERLAY0: "#6C7086",
+  },
+  FONT_FAMILY: {
+    POPPINS: {
+      REGULAR: "Poppins_400Regular",
+      MEDIUM: "Poppins_500Medium",
+      SEMIBOLD: "Poppins_600SemiBold",
+      BOLD: "Poppins_700Bold",
+    }
   }
-}
+};
+
