@@ -3,4 +3,5 @@ export enum EStatusErrors {
   E401 = "User not authorized",
   E404 = "Data not found",
   E409 = "Data already exists",
+  E500 = "Internal server error",
 }

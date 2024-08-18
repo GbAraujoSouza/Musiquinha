@@ -42,8 +42,8 @@ model Song {
   url      String
   duration Int
 
-  album   Album  @relation("SongAlbum", fields: [albumId], references: [id])
-  albumId String
+  album   Album?  @relation("SongAlbum", fields: [albumId], references: [id])
+  albumId String?
 
   playlists     Playlist[]
   listenHistory ListenHistory[]
