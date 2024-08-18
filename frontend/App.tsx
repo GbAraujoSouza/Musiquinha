@@ -9,10 +9,10 @@ import * as SplashScreen from "expo-splash-screen";
 import { useFonts } from "expo-font";
 import { useEffect } from "react";
 
-import Login from "./src/pages/Login";
 import { ThemeProvider } from "styled-components/native";
 import theme from "./src/theme";
-import Register from "./src/pages/Register";
+import Routes from "./src/routes";
+import { SafeAreaProvider, SafeAreaView } from "react-native-safe-area-context";
 
 SplashScreen.preventAutoHideAsync();
 
@@ -42,7 +42,12 @@ export default function App() {
 
   return (
     <ThemeProvider theme={theme}>
-      <Register />
+      <SafeAreaProvider>
+        <StatusBar translucent backgroundColor={theme.COLORS.BASE} />
+        <SafeAreaView style={{ flex: 1 }}>
+          <Routes />
+        </SafeAreaView>
+      </SafeAreaProvider>
     </ThemeProvider>
   );
 }
