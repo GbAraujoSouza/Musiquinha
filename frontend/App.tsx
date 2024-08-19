@@ -13,6 +13,11 @@ import { ThemeProvider } from "styled-components/native";
 import theme from "./src/theme";
 import Routes from "./src/routes";
 import { SafeAreaProvider, SafeAreaView } from "react-native-safe-area-context";
+import "react-toastify/dist/ReactToastify.css";
+import { NavigationContainer } from "@react-navigation/native";
+import AuthProvider from "./src/contexts/AuthContext";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 SplashScreen.preventAutoHideAsync();
 
@@ -45,7 +50,12 @@ export default function App() {
       <SafeAreaProvider>
         <StatusBar translucent backgroundColor={theme.COLORS.BASE} />
         <SafeAreaView style={{ flex: 1 }}>
-          <Routes />
+          <NavigationContainer>
+            <AuthProvider>
+              <Routes />
+            </AuthProvider>
+          </NavigationContainer>
+          <ToastContainer />
         </SafeAreaView>
       </SafeAreaProvider>
     </ThemeProvider>

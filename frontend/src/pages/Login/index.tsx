@@ -16,6 +16,7 @@ import { Controller, SubmitHandler, useForm } from "react-hook-form";
 import FormButton from "../../components/FormButton";
 
 import AppLogoIcon from "../../assets/Logo.svg";
+import { useAuth } from "../../contexts/AuthContext";
 
 interface ILoginData {
   email: string;
@@ -23,6 +24,8 @@ interface ILoginData {
 }
 
 const Login = () => {
+  const { loginUser } = useAuth();
+
   const {
     control,
     handleSubmit,
@@ -34,7 +37,10 @@ const Login = () => {
     },
   });
 
-  const onSubmit: SubmitHandler<ILoginData> = (data) => console.log(data);
+  const onSubmit: SubmitHandler<ILoginData> = (data) => {
+    console.log(data);
+    loginUser(data.email, data.password);
+  };
 
   return (
     <FormContainer>

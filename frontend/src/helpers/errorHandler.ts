@@ -2,9 +2,9 @@ import axios from "axios";
 import { toast } from "react-toastify";
 import { useNavigation } from "@react-navigation/native";
 
-const navigation = useNavigation();
 
 export const handleError = (error: any) => {
+  const navigation = useNavigation();
   if (axios.isAxiosError(error)) {
     const err = error.response;
     if (Array.isArray(err?.data.errors)) {

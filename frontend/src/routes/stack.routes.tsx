@@ -2,8 +2,11 @@ import { createNativeStackNavigator } from "@react-navigation/native-stack";
 
 import Library from "../pages/Library";
 import LikedSongs from "../pages/LikedSongs";
+import Login from "../pages/Login";
+import Register from "../pages/Register";
 
 const LibraryStack = createNativeStackNavigator();
+const AuthStack = createNativeStackNavigator();
 
 export function LibratyStackRoutes() {
   return (
@@ -13,3 +16,13 @@ export function LibratyStackRoutes() {
     </LibraryStack.Navigator>
   );
 }
+
+export function AuthStackRoutes() {
+  return (
+    <AuthStack.Navigator screenOptions={{ headerShown: false }}>
+      <AuthStack.Screen name="Login" component={Login} />
+      <AuthStack.Screen name="Register" component={Register} />
+    </AuthStack.Navigator>
+  );
+}
+
