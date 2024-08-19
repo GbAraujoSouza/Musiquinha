@@ -9,6 +9,11 @@ export class AuthService {
       where: {
         email,
       },
+      // select: {
+      //   id: true,
+      //   name: true,
+      //   email: true,
+      // },
     });
 
     if (!findUser) {
@@ -19,6 +24,14 @@ export class AuthService {
       throw new Error(EStatusErrors.E401);
     }
 
-    return auth.generateJWT(findUser);
+    return {
+      user: {
+        id: findUser.id,
+        name: findUser.name,
+        email: findUser.email,
+        isArtist: findUser.isArtist,
+      },
+      token: auth.generateJWT(findUser),
+    };
   }
 }
