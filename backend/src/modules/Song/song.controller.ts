@@ -11,17 +11,14 @@ export class SongController {
       const file = request.file as Express.Multer.File;
 
       if (!file) {
-        return response.status(401).json({
+        return response.status(400).json({
           message: EStatusErrors.E400,
         })
       }
 
-      const filePath = file.path; // Or the cloud storage URL
-      console.log("filePath: " + `${process.env.APP_URL}/uploads/${file.path}`)
-
       return response.status(201).json({
         message: ECrud.CREATE,
-        data: await SongService.create(title, filePath, artistId),
+        data: await SongService.create(title, file, artistId),
       });
     } catch (error) {
       return response.status(500).json({

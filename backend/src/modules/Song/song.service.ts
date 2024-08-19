@@ -1,20 +1,40 @@
 import { Prisma } from "@prisma/client";
 import { EStatusErrors } from "../../enum/status-errors.enum";
 import prisma from "../../prismaConnection";
-import getAudioDurationInSeconds from "get-audio-duration";
+import { S3Client, PutObjectCommand } from "@aws-sdk/client-s3";
+import crypto from "crypto";
 
 export class SongService {
+  private static bucketName = process.env.BUCKET_NAME;
+  private static bucketRegion = process.env.BUCKET_REGION;
+
+  private static randomSongName = (bytes: number = 32) =>
+    crypto.randomBytes(bytes).toString("hex");
+
   public static async create(
     title: string,
-    filePath: string,
+    file: Express.Multer.File,
     artistId: string,
   ) {
-    const duration = await getAudioDurationInSeconds(filePath);
+    const s3 = new S3Client({ region: this.bucketRegion });
+
+    const songName = this.randomSongName();
+
+    const params = {
+      Bucket: this.bucketName,
+      Key: songName,
+      Body: file.buffer,
+      ContentType: file.mimetype,
+    };
+
+    const command = new PutObjectCommand(params);
+
+    await s3.send(command);
+
 
     const songInput: Prisma.SongCreateInput = {
       title,
-      duration: Math.round(duration),
-      url: filePath,
+      url: songName,
       artist: {
         connect: {
           id: artistId,

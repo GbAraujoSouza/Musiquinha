@@ -40,7 +40,6 @@ model Song {
   artist   User   @relation("UserSongs", fields: [artistId], references: [id])
   artistId String
   url      String
-  duration Int
 
   album   Album?  @relation("SongAlbum", fields: [albumId], references: [id])
   albumId String?
