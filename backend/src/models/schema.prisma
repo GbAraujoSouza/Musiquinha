@@ -22,6 +22,7 @@ model User {
   isArtist      Boolean         @default(false)
   artist        Artist?         @relation("UserArtist")
   songs         Song[]          @relation("UserSongs")
+  favoriteSongs Favorites?
   playlists     Playlist[]      @relation("UserPlaylists")
   listenHistory ListenHistory[]
 }
@@ -45,9 +46,17 @@ model Song {
   albumId String?
 
   playlists     Playlist[]
+  favorites     Favorites[]
   listenHistory ListenHistory[]
   Artist        Artist?         @relation(fields: [artistUserId], references: [userId])
   artistUserId  String?
+}
+
+model Favorites {
+  user   User   @relation(fields: [userId], references: [id])
+  userId String @id
+
+  songs Song[]
 }
 
 model Album {
@@ -70,8 +79,8 @@ model ListenHistory {
 }
 
 model Playlist {
-  id     String @id @default(uuid())
-  name   String
+  id          String @id @default(uuid())
+  name        String
   description String
 
   user   User   @relation("UserPlaylists", fields: [userId], references: [id])
