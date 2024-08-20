@@ -1,12 +1,23 @@
-import { Prisma, User } from "@prisma/client";
+import { Prisma, Song, User } from "@prisma/client";
 import { EStatusErrors } from "../../enum/status-errors.enum";
 import prisma from "../../prismaConnection";
-import { S3Client, PutObjectCommand } from "@aws-sdk/client-s3";
+import {
+  S3Client,
+  PutObjectCommand,
+  GetObjectCommand,
+} from "@aws-sdk/client-s3";
+import { getSignedUrl } from "@aws-sdk/s3-request-presigner";
 import crypto from "crypto";
+
+interface SongWithPublicUrl extends Song {
+  songPublicUrl: string;
+};
 
 export class SongService {
   private static bucketName = process.env.BUCKET_NAME;
   private static bucketRegion = process.env.BUCKET_REGION;
+
+  private static s3 = new S3Client({ region: this.bucketRegion });
 
   private static randomSongName = (bytes: number = 32) =>
     crypto.randomBytes(bytes).toString("hex");
@@ -16,9 +27,6 @@ export class SongService {
     file: Express.Multer.File,
     artistId: string,
   ) {
-    console.log(artistId);
-    const s3 = new S3Client({ region: this.bucketRegion });
-
     const songName = this.randomSongName();
 
     const params = {
@@ -30,7 +38,7 @@ export class SongService {
 
     const command = new PutObjectCommand(params);
 
-    await s3.send(command);
+    await this.s3.send(command);
 
     const songInput: Prisma.SongCreateInput = {
       title,
@@ -49,12 +57,29 @@ export class SongService {
 
     return createdSong;
   }
-  public static async index() {
-    const findMusics = await prisma.song.findMany();
 
-    if (!findMusics) throw new Error(EStatusErrors.E404);
 
-    return findMusics;
+  public static async index(): Promise<SongWithPublicUrl[]> {
+    const findSongs = await prisma.song.findMany();
+
+    if (!findSongs) throw new Error(EStatusErrors.E404);
+
+    const songsWithPublicUrls: SongWithPublicUrl[] = [];
+  
+    for (const song of findSongs) {
+      const getObjectParams = {
+        Bucket: this.bucketName,
+        Key: song.url,
+      }
+      const command = new GetObjectCommand(getObjectParams);
+      const url = await getSignedUrl(this.s3, command, { expiresIn: 3600 });
+
+      songsWithPublicUrls.push({
+        ...song,
+        songPublicUrl: url,
+      })
+    }
+    return songsWithPublicUrls;
   }
 
   public static async show(songId: string) {
