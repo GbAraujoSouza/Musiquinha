@@ -78,7 +78,7 @@ const AuthProvider = ({ children }: React.PropsWithChildren) => {
 
           toast.success("Login Success!");
           // navigation.navigate("Home" as never);
-          navigation.navigate("Home" as never);
+          navigation.navigate("Main" as never);
         }
       })
       .catch((e) => toast.warning("Server error ocurred"));

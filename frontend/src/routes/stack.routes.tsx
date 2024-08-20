@@ -12,7 +12,11 @@ export function LibratyStackRoutes() {
   return (
     <LibraryStack.Navigator screenOptions={{ headerShown: false }}>
       <LibraryStack.Screen name="Library" component={Library} />
-      <LibraryStack.Screen name="LikedSongs" component={LikedSongs} />
+      <LibraryStack.Screen
+        name="LikedSongs"
+        component={LikedSongs}
+        options={{ headerShown: true ,title: "Liked Songs", headerStyle}}
+      />
     </LibraryStack.Navigator>
   );
 }
@@ -25,4 +29,3 @@ export function AuthStackRoutes() {
     </AuthStack.Navigator>
   );
 }
-

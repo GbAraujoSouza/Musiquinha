@@ -44,6 +44,7 @@ export default function TabRoutes() {
           borderTopRightRadius: 20,
           borderTopWidth: 0,
           paddingTop: 8,
+          backgroundColor: theme.COLORS.BASE,
         },
         // tabBarBackground: () => (
         //   <BlurView

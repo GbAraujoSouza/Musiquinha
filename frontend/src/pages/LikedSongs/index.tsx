@@ -1,9 +1,12 @@
 import React from "react";
 import { SemiboldText } from "../../theme/globalFonts";
+import { Container } from "./styles";
 
 const LikedSongs = () => {
   return (
-    <SemiboldText>LikedSongs</SemiboldText>
+    <Container>
+
+      </Container>
   );
 };
 
