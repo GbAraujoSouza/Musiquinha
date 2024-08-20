@@ -25,6 +25,18 @@ router.get(
   SongController.index,
 );
 
+router.put(
+  `${baseUrl}/favorite-song/:songId`,
+  passport.authenticate("jwt", { session: false }),
+  SongController.favoriteSong,
+);
+
+router.put(
+  `${baseUrl}/unfavorite-song/:songId`,
+  passport.authenticate("jwt", { session: false }),
+  SongController.unfavoriteSong,
+);
+
 router.get(
   `${baseUrl}/favorites/:userId`,
   passport.authenticate("jwt", { session: false }),
@@ -39,3 +51,4 @@ router.get(
 );
 
 export const songRouter = router;
+

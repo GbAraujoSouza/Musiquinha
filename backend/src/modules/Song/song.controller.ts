@@ -51,7 +51,6 @@ export class SongController {
 
   public static async index(request: Request, response: Response) {
     try {
-      console.log(request.user);
       return response.status(200).json({
         message: ECrud.READ,
         data: await SongService.index(),
@@ -70,7 +69,6 @@ export class SongController {
 
       const userId = request.user as string;
 
-
       const likedSongs = await SongService.getFavorites(userId);
 
       return response.status(201).json({
@@ -86,15 +84,30 @@ export class SongController {
 
   public static async favoriteSong(request: Request, response: Response) {
     try {
-      const { songId } = request.params; 
+      const { songId } = request.params;
       const userId = request.user as string;
 
       await SongService.favoriteSong(songId, userId);
 
       return response.status(201).send(ECrud.UPDATE);
     } catch (error) {
-      
+      return response
+        .status(404)
+        .json({ error: ErrorHandler.getErrorMessage(error) });
     }
+  }
+  public static async unfavoriteSong(request: Request, response: Response) {
+    try {
+      const { songId } = request.params;
+      const userId = request.user as string;
 
+      await SongService.unfavoriteSong(songId, userId);
+
+      return response.status(201).send(ECrud.UPDATE);
+    } catch (error) {
+      return response
+        .status(404)
+        .json({ error: ErrorHandler.getErrorMessage(error) });
+    }
   }
 }

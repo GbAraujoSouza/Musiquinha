@@ -11,7 +11,7 @@ import crypto from "crypto";
 
 interface SongWithPublicUrl extends Song {
   songPublicUrl: string;
-};
+}
 
 export class SongService {
   private static bucketName = process.env.BUCKET_NAME;
@@ -58,26 +58,25 @@ export class SongService {
     return createdSong;
   }
 
-
   public static async index(): Promise<SongWithPublicUrl[]> {
     const findSongs = await prisma.song.findMany();
 
     if (!findSongs) throw new Error(EStatusErrors.E404);
 
     const songsWithPublicUrls: SongWithPublicUrl[] = [];
-  
+
     for (const song of findSongs) {
       const getObjectParams = {
         Bucket: this.bucketName,
         Key: song.url,
-      }
+      };
       const command = new GetObjectCommand(getObjectParams);
       const url = await getSignedUrl(this.s3, command, { expiresIn: 3600 });
 
       songsWithPublicUrls.push({
         ...song,
         songPublicUrl: url,
-      })
+      });
     }
     return songsWithPublicUrls;
   }
@@ -94,7 +93,9 @@ export class SongService {
     return { ...findMusic, songUrl };
   }
 
-  public static async getFavorites(userId: string) {
+  public static async getFavorites(
+    userId: string,
+  ): Promise<SongWithPublicUrl[] | void> {
     const findUser = await prisma.user.findUnique({ where: { id: userId } });
 
     if (!findUser) throw new Error(EStatusErrors.E404);
@@ -104,7 +105,24 @@ export class SongService {
       include: { songs: true },
     });
 
-    return likedSongs;
+    if (likedSongs) {
+      const songsWithPublicUrls: SongWithPublicUrl[] = [];
+
+      for (const song of likedSongs.songs) {
+        const getObjectParams = {
+          Bucket: this.bucketName,
+          Key: song.url,
+        };
+        const command = new GetObjectCommand(getObjectParams);
+        const url = await getSignedUrl(this.s3, command, { expiresIn: 3600 });
+
+        songsWithPublicUrls.push({
+          ...song,
+          songPublicUrl: url,
+        });
+      }
+      return songsWithPublicUrls;
+    }
   }
 
   public static async favoriteSong(songId: string, userId: string) {
@@ -113,13 +131,46 @@ export class SongService {
     });
     if (!song) throw new Error(EStatusErrors.E404);
 
-    const updatedFavorites = await prisma.favorites.update({
+    const user = await prisma.song.findUnique({
+      where: { id: songId },
+    });
+    if (!user) throw new Error(EStatusErrors.E404);
+
+    const updateFavoriteInput: Prisma.FavoritesUpdateInput = {
+      songs: {
+        connect: { id: songId },
+      },
+    };
+
+    await prisma.favorites.update({
       where: {
         userId: userId,
       },
-      data: {
-        songs: { connect: { id: songId } },
+      data: updateFavoriteInput,
+    });
+  }
+  public static async unfavoriteSong(songId: string, userId: string) {
+    const song = await prisma.song.findUnique({
+      where: { id: songId },
+    });
+    if (!song) throw new Error(EStatusErrors.E404);
+
+    const user = await prisma.song.findUnique({
+      where: { id: songId },
+    });
+    if (!user) throw new Error(EStatusErrors.E404);
+
+    const updateFavoriteInput: Prisma.FavoritesUpdateInput = {
+      songs: {
+        disconnect: { id: songId },
       },
+    };
+
+    await prisma.favorites.update({
+      where: {
+        userId: userId,
+      },
+      data: updateFavoriteInput,
     });
   }
 }
