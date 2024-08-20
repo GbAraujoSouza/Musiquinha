@@ -35,6 +35,14 @@ export class UserService {
       select: { id: true, name: true, email: true },
     });
 
+    await prisma.favorites.create({
+      data: {
+        user: {
+          connect: { id: createdUser.id },
+        },
+      },
+    });
+
     if (isArtist) {
       await prisma.artist.create({
         data: { userId: createdUser.id },

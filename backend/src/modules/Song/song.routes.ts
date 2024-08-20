@@ -23,10 +23,18 @@ router.get(
   passport.authenticate("jwt", { session: false }),
   SongController.index,
 );
+
+router.get(
+  `${baseUrl}/favorites`,
+  passport.authenticate("jwt", { session: false }),
+  SongController.getFavorites,
+);
+
 router.get(
   `${baseUrl}/:songId`,
   passport.authenticate("jwt", { session: false }),
   SongController.show,
 );
+
 
 export const songRouter = router;

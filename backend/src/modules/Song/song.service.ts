@@ -16,7 +16,7 @@ export class SongService {
     file: Express.Multer.File,
     artistId: string,
   ) {
-    console.log(artistId)
+    console.log(artistId);
     const s3 = new S3Client({ region: this.bucketRegion });
 
     const songName = this.randomSongName();
@@ -31,7 +31,6 @@ export class SongService {
     const command = new PutObjectCommand(params);
 
     await s3.send(command);
-
 
     const songInput: Prisma.SongCreateInput = {
       title,
@@ -68,5 +67,20 @@ export class SongService {
     const songUrl = `${process.env.APP_URL}/uploads/${findMusic.url}`;
 
     return { ...findMusic, songUrl };
+  }
+
+  public static async getFavorites(userId: string) {
+    const findUser = await prisma.user.findUnique({ where: { id: userId } });
+
+    console.log(userId)
+    if (!findUser) throw new Error(EStatusErrors.E404);
+    console.log("after\n")
+
+    const likedSongs = await prisma.favorites.findUnique({
+      where: { userId: userId },
+      include: { songs: true },
+    });
+
+    return likedSongs;
   }
 }

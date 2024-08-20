@@ -12,7 +12,7 @@ export class SongController {
       if (!request.user)
         return response.status(400).json({ message: "Error in token" });
 
-      const artistId = request.user as string; 
+      const artistId = request.user as string;
 
       const file = request.file as Express.Multer.File;
 
@@ -60,6 +60,27 @@ export class SongController {
       return response.status(404).json({
         message: ErrorHandler.getErrorMessage(error),
       });
+    }
+  }
+
+  public static async getFavorites(request: Request, response: Response) {
+    try {
+      if (!request.user)
+        return response.status(400).json({ message: "Error in token" });
+
+      const userId = request.user as string;
+
+
+      const likedSongs = await SongService.getFavorites(userId);
+
+      return response.status(201).json({
+        message: ECrud.READ,
+        data: likedSongs,
+      });
+    } catch (error) {
+      return response
+        .status(404)
+        .json({ error: ErrorHandler.getErrorMessage(error) });
     }
   }
 }
