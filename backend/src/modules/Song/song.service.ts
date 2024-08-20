@@ -1,4 +1,4 @@
-import { Prisma } from "@prisma/client";
+import { Prisma, User } from "@prisma/client";
 import { EStatusErrors } from "../../enum/status-errors.enum";
 import prisma from "../../prismaConnection";
 import { S3Client, PutObjectCommand } from "@aws-sdk/client-s3";
@@ -16,6 +16,7 @@ export class SongService {
     file: Express.Multer.File,
     artistId: string,
   ) {
+    console.log(artistId)
     const s3 = new S3Client({ region: this.bucketRegion });
 
     const songName = this.randomSongName();
