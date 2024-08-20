@@ -81,4 +81,20 @@ export class SongService {
 
     return likedSongs;
   }
+
+  public static async favoriteSong(songId: string, userId: string) {
+    const song = await prisma.song.findUnique({
+      where: { id: songId },
+    });
+    if (!song) throw new Error(EStatusErrors.E404);
+
+    const updatedFavorites = await prisma.favorites.update({
+      where: {
+        userId: userId,
+      },
+      data: {
+        songs: { connect: { id: songId } },
+      },
+    });
+  }
 }

@@ -83,4 +83,18 @@ export class SongController {
         .json({ error: ErrorHandler.getErrorMessage(error) });
     }
   }
+
+  public static async favoriteSong(request: Request, response: Response) {
+    try {
+      const { songId } = request.params; 
+      const userId = request.user as string;
+
+      await SongService.favoriteSong(songId, userId);
+
+      return response.status(201).send(ECrud.UPDATE);
+    } catch (error) {
+      
+    }
+
+  }
 }
