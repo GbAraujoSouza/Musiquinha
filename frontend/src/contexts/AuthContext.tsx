@@ -2,7 +2,7 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 import React, { createContext, useEffect, useState } from "react";
 import { UserProfile } from "../models/user";
 import AuthService from "../services/AuthService";
-import { toast } from "react-toastify";
+// import { toast } from "react-toastify";
 import { NavigationProp, useNavigation } from "@react-navigation/native";
 
 interface AuthContextValue {
@@ -56,11 +56,11 @@ const AuthProvider = ({ children }: React.PropsWithChildren) => {
     await AuthService.register({ name, email, password })
       .then((response) => {
         if (response?.status === 201) {
-          toast.success("Successfully Registered");
+          // toast.success("Successfully Registered");
           navigation.navigate("Login" as never);
         }
       })
-      .catch((e) => toast.warning("Server error ocurred"));
+      .catch((e) => console.log("Server error ocurred"));
   };
 
   const loginUser = async (email: string, password: string) => {
@@ -76,12 +76,12 @@ const AuthProvider = ({ children }: React.PropsWithChildren) => {
           setAuthorizationToken(response.data.token);
           setUser(response.data.user);
 
-          toast.success("Login Success!");
+          // toast.success("Login Success!");
           // navigation.navigate("Home" as never);
           navigation.navigate("Main" as never);
         }
       })
-      .catch((e) => toast.warning("Server error ocurred"));
+      .catch((e) => console.log("Server error ocurred"));
   };
 
   const isLoggedIn = () => !!user;

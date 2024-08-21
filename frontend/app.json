@@ -14,14 +14,17 @@
     "ios": {
       "supportsTablet": true,
       "infoPlist": {
-        "UIBackgroundModes": ["audio"]
+        "UIBackgroundModes": [
+          "audio"
+        ]
       }
     },
     "android": {
       "adaptiveIcon": {
         "foregroundImage": "./src/assets/adaptive-icon.png",
         "backgroundColor": "#eee"
-      }
+      },
+      "package": "com.gbaraujosouza.musiquinha"
     },
     "web": {
       "favicon": "./src/assets/favicon.png"

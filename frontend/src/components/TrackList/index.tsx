@@ -3,15 +3,15 @@ import TrackListItem from "../TrackListItem";
 import { ItemDivider } from "./styles";
 import { Track } from "react-native-track-player";
 
-interface CustomTrack extends Track {
-  abuleibe?: string;
-}
-
 interface TrackListProps {
-  tracks: CustomTrack[];
+  tracks: Track[];
 }
 
 const TrackList = ({ tracks }: TrackListProps) => {
+  const handleTrackSelect = (track: Track) => {
+    console.log(track)
+  }
+
   return (
     <FlatList
       data={tracks}
@@ -20,6 +20,7 @@ const TrackList = ({ tracks }: TrackListProps) => {
       renderItem={({ item: track }) => (
         <TrackListItem
           track={track}
+          onTrackSelect={handleTrackSelect}
         />
       )}
     />
