@@ -3,13 +3,13 @@ import { RegularText } from "../../theme/globalFonts";
 
 export const Container = styled.ScrollView`
   background-color: ${({ theme }) => theme.COLORS.BASE};
-  padding: 0 2rem;
+  padding: 0 32px;
 `;
 
 export const OptionsSection = styled.View`
   display: flex;
   gap: 1.5rem;
-  padding: 2rem 0;
+  padding: 32px 0;
 `;
 
 export const LibrayOptionContainer = styled.View`
@@ -24,9 +24,9 @@ export const OptionText = styled(RegularText)`
 `;
 
 export const OptionPressable = styled.Pressable`
-  width: 3.5rem;
-  height: 3.5rem;
-  padding: 1rem;
+  width: 56px;
+  height: 56px;
+  padding: 16px;
   border-radius: 16px;
   background-color: ${({ theme }) => theme.COLORS.MAUVE};
 `;
@@ -36,5 +36,5 @@ export const Divider = styled.View`
   width: 70%;
   background-color: ${({ theme }) => theme.COLORS.TEXT};
   align-self: center;
-  margin: 0.5rem;
+  margin: 8px;
 `;

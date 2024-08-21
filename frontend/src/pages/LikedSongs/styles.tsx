@@ -1,7 +1,7 @@
 import styled from "styled-components/native";
 import { RegularText, SemiboldText } from "../../theme/globalFonts";
 
-export const Container = styled.ScrollView`
+export const Container = styled.View`
   background-color: ${({ theme }) => theme.COLORS.BASE};
   padding: 0 2rem;
 `;

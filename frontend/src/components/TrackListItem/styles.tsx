@@ -9,11 +9,11 @@ export const TrackItemImage = styled(Image)`
 `;
 
 export const TrackTitleText = styled(MediumText)`
-  font-size: 1rem;
+  font-size: 16px;
 `;
 
 export const TrackArtistText = styled(RegularText)`
-  font-size: 0.75rem;
+  font-size: 12px;
 `;
 
 export const TrackItemContainer = styled.View`

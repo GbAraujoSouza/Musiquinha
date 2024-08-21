@@ -13,9 +13,7 @@ const LikedSongs = () => {
         <SongsCount>xx musics</SongsCount>
       </HeaderContainer>
 
-      <ScrollView contentInsetAdjustmentBehavior="automatic">
-        <TrackList tracks={library}/>
-      </ScrollView>
+      <TrackList tracks={library} />
     </Container>
   );
 };
