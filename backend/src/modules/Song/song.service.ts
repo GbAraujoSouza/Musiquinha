@@ -206,6 +206,7 @@ export class SongService {
       data: { likes: { increment: 1 } },
     });
   }
+
   public static async unfavoriteSong(songId: string, userId: string) {
     const song = await prisma.song.findUnique({
       where: { id: songId },
@@ -235,5 +236,25 @@ export class SongService {
         data: { likes: { decrement: 1 } },
       });
     }
+  }
+
+  public static async getSongsOrderedByLikes(limit: number) {
+    const songs = await prisma.song.findMany({
+      orderBy: {
+        favorites: {
+          _count: "desc",
+        },
+      },
+      include: {
+        artist: {
+          select: {
+            name: true,
+          },
+        },
+        album: true,
+      },
+    });
+
+    return songs;
   }
 }

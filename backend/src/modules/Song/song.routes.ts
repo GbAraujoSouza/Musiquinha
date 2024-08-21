@@ -51,6 +51,12 @@ router.get(
 );
 
 router.get(
+  `${baseUrl}/ordered-by-likes`,
+  passport.authenticate("jwt", { session: false }),
+  SongController.getSongsOrderedByLikes,
+);
+
+router.get(
   `${baseUrl}/:songId`,
   passport.authenticate("jwt", { session: false }),
   SongController.show,
