@@ -102,7 +102,13 @@ export class SongService {
 
     const likedSongs = await prisma.favorites.findUnique({
       where: { userId: userId },
-      include: { songs: true },
+      include: {
+        songs: {
+          include: {
+            artist: true,
+          },
+        },
+      },
     });
 
     if (likedSongs) {
@@ -136,6 +142,19 @@ export class SongService {
     });
     if (!user) throw new Error(EStatusErrors.E404);
 
+    const found = await prisma.favorites.findUnique({
+      where: {
+        userId,
+      },
+      include: {
+        songs: {
+          where: { id: songId },
+        },
+      },
+    });
+
+    if (found?.songs.length) throw new Error(EStatusErrors.E401);
+
     const updateFavoriteInput: Prisma.FavoritesUpdateInput = {
       songs: {
         connect: { id: songId },
@@ -147,6 +166,11 @@ export class SongService {
         userId: userId,
       },
       data: updateFavoriteInput,
+    });
+
+    await prisma.song.update({
+      where: { id: songId },
+      data: { likes: { increment: 1 } },
     });
   }
   public static async unfavoriteSong(songId: string, userId: string) {
@@ -172,5 +196,11 @@ export class SongService {
       },
       data: updateFavoriteInput,
     });
+    if (song.likes > 0) {
+      await prisma.song.update({
+        where: { id: songId },
+        data: { likes: { decrement: 1 } },
+      });
+    }
   }
 }

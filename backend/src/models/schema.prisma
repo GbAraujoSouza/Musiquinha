@@ -45,8 +45,10 @@ model Song {
   album   Album?  @relation("SongAlbum", fields: [albumId], references: [id])
   albumId String?
 
+  likes Int @default(0)
+
   playlists     Playlist[]
-  favorites     Favorites[] @relation("FavoriteSong")
+  favorites     Favorites[]     @relation("FavoriteSong")
   listenHistory ListenHistory[]
   Artist        Artist?         @relation(fields: [artistUserId], references: [userId])
   artistUserId  String?
