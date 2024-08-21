@@ -62,6 +62,26 @@ export class SongController {
     }
   }
 
+  public static async searchSongs(request: Request, response: Response) {
+    try {
+      const { title, artistName } = request.query;
+
+      const songs = await SongService.searchSongs({
+        title: title as string,
+        artistName: artistName as string,
+      });
+
+      return response.status(200).json({
+        message: ECrud.READ,
+        data: songs,
+      });
+    } catch (error) {
+      return response.status(404).json({
+        message: ErrorHandler.getErrorMessage(error),
+      });
+    }
+  }
+
   public static async getFavorites(request: Request, response: Response) {
     try {
       if (!request.user)

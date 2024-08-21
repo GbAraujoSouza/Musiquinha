@@ -25,6 +25,12 @@ router.get(
   SongController.index,
 );
 
+router.get(
+  `${baseUrl}/search-songs`,
+  passport.authenticate("jwt", { session: false }),
+  SongController.searchSongs,
+);
+
 router.put(
   `${baseUrl}/favorite-song/:songId`,
   passport.authenticate("jwt", { session: false }),

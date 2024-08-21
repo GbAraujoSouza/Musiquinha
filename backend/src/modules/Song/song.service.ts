@@ -13,6 +13,12 @@ interface SongWithPublicUrl extends Song {
   songPublicUrl: string;
 }
 
+interface SongSearchFilters {
+  title?: string;
+  artistName?: string;
+  albumTitle?: string;
+}
+
 export class SongService {
   private static bucketName = process.env.BUCKET_NAME;
   private static bucketRegion = process.env.BUCKET_REGION;
@@ -79,6 +85,33 @@ export class SongService {
       });
     }
     return songsWithPublicUrls;
+  }
+
+  public static async searchSongs(filters: SongSearchFilters) {
+    const songs = await prisma.song.findMany({
+      where: {
+        title: {
+          contains: filters.title,
+          mode: "insensitive",
+        },
+        artist: {
+          name: {
+            contains: filters.artistName,
+            mode: "insensitive",
+          },
+        },
+      },
+      include: {
+        artist: {
+          select: {
+            name: true,
+          },
+        },
+        album: true,
+      },
+    });
+
+    return songs;
   }
 
   public static async show(songId: string) {
