@@ -20,6 +20,7 @@ import AuthProvider from "./src/contexts/AuthContext";
 // import { ToastContainer } from "react-toastify";
 import { useSetupTrackPlayer } from "./src/hooks/useSetupTrackPlayer";
 import { useLogTrackPlayerState } from "./src/hooks/useLogTrackPlayerState";
+import FloatingPlayer from "./src/components/FloatingPlayer";
 
 SplashScreen.preventAutoHideAsync();
 
@@ -67,6 +68,7 @@ export default function App() {
           <NavigationContainer>
             <AuthProvider>
               <Routes />
+              <FloatingPlayer />
             </AuthProvider>
           </NavigationContainer>
         </SafeAreaView>
