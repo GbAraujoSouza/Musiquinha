@@ -17,11 +17,12 @@ const TrackListItem = ({ track, onTrackSelect }: TrackListItemProps) => {
         <View>
           <TrackItemImage
             source={track.artwork ?? DefaultSongCover}
+            $isActiveTrack={isActiveTrack}
           />
         </View>
 
         <View>
-          <TrackTitleText numberOfLines={1}>{track.title}</TrackTitleText>
+          <TrackTitleText $isActiveTrack={isActiveTrack} numberOfLines={1}>{track.title}</TrackTitleText>
           <TrackArtistText numberOfLines={1}>
             {track.artist ?? "Unknown"}
           </TrackArtistText>
