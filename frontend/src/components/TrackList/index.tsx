@@ -9,6 +9,7 @@ const TrackList = () => {
     <FlatList
       data={library}
       ItemSeparatorComponent={ItemDivider}
+      contentContainerStyle={{paddingBottom: 128}}
       renderItem={({ item: track }) => (
         <TrackListItem
           track={{
