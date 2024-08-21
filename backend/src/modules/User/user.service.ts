@@ -51,4 +51,55 @@ export class UserService {
 
     return createdUser;
   }
+
+  public static async index(limit: number, offset: number) {
+    return await prisma.user.findMany({
+      take: limit,
+      skip: offset,
+    });
+  }
+
+  public static async show(userId: string) {
+    const user = await prisma.user.findUnique({
+      where: { id: userId },
+      select: {
+        id: true,
+        name: true,
+        email: true,
+        isArtist: true,
+      },
+    });
+
+    if (!user) throw new Error(EStatusErrors.E404);
+
+    return user;
+  }
+
+  public static async update(userId: string, name: string, email: string) {
+    const user = await prisma.user.findUnique({
+      where: { id: userId },
+    });
+
+    if (!user) throw new Error(EStatusErrors.E404);
+
+    await prisma.user.update({
+      where: { id: userId },
+      data: {
+        name,
+        email,
+      },
+    });
+  }
+
+  public static async deleteUser(userId: string) {
+    const user = await prisma.user.findUnique({
+      where: { id: userId },
+    });
+
+    if (!user) throw new Error(EStatusErrors.E404);
+
+    await prisma.user.delete({
+      where: { id: userId },
+    });
+  }
 }

@@ -29,7 +29,7 @@ model User {
 
 model Artist {
   userId String @id @unique
-  user   User   @relation("UserArtist", fields: [userId], references: [id])
+  user   User   @relation("UserArtist", fields: [userId], references: [id], onDelete: Cascade)
 
   albuns Album[] @relation("ArtistAlbum")
   songs  Song[]
@@ -38,11 +38,11 @@ model Artist {
 model Song {
   id       String @id @default(uuid())
   title    String
-  artist   User   @relation("UserSongs", fields: [artistId], references: [id])
+  artist   User   @relation("UserSongs", fields: [artistId], references: [id], onDelete: Cascade)
   artistId String
   url      String
 
-  album   Album?  @relation("SongAlbum", fields: [albumId], references: [id])
+  album   Album?  @relation("SongAlbum", fields: [albumId], references: [id], onDelete: SetNull)
   albumId String?
 
   likes Int @default(0)
@@ -55,7 +55,7 @@ model Song {
 }
 
 model Favorites {
-  user   User   @relation(fields: [userId], references: [id])
+  user   User   @relation(fields: [userId], references: [id], onDelete: Cascade)
   userId String @id
 
   songs Song[] @relation("FavoriteSong")
@@ -65,7 +65,7 @@ model Album {
   id    String @id @default(uuid())
   title String
 
-  artist   Artist @relation("ArtistAlbum", fields: [artistId], references: [userId])
+  artist   Artist @relation("ArtistAlbum", fields: [artistId], references: [userId], onDelete: Cascade)
   artistId String
 
   songs Song[] @relation("SongAlbum")
@@ -74,9 +74,9 @@ model Album {
 model ListenHistory {
   id         String   @id @default(uuid())
   songId     String
-  song       Song     @relation(fields: [songId], references: [id])
+  song       Song     @relation(fields: [songId], references: [id], onDelete: Cascade)
   userId     String
-  user       User     @relation(fields: [userId], references: [id])
+  user       User     @relation(fields: [userId], references: [id], onDelete: Cascade)
   listenedAt DateTime
 }
 
@@ -85,7 +85,7 @@ model Playlist {
   name        String
   description String
 
-  user   User   @relation("UserPlaylists", fields: [userId], references: [id])
+  user   User   @relation("UserPlaylists", fields: [userId], references: [id], onDelete: Cascade)
   userId String
   songs  Song[]
 }
