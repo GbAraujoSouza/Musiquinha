@@ -1,6 +1,6 @@
 import styled from "styled-components/native";
-import { ScrollView } from "react-native";
 import { SemiboldText } from "../../theme/globalFonts";
+import { Image } from "expo-image";
 
 export const Container = styled.ScrollView`
   display: flex;
@@ -13,7 +13,7 @@ export const HeaderTitle = styled(SemiboldText)`
   font-size: 22px;
 `;
 
-export const HeaderImage = styled.Image`
+export const HeaderImage = styled(Image)`
   width: 32px;
   height: 32px;
 `;

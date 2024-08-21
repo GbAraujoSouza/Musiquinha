@@ -4,19 +4,19 @@ import Library from "../pages/Library";
 import LikedSongs from "../pages/LikedSongs";
 import Login from "../pages/Login";
 import Register from "../pages/Register";
+import theme from "../theme";
 
 const LibraryStack = createNativeStackNavigator();
 const AuthStack = createNativeStackNavigator();
 
 export function LibratyStackRoutes() {
   return (
-    <LibraryStack.Navigator screenOptions={{ headerShown: false }}>
+    <LibraryStack.Navigator
+      initialRouteName="LikedSongs"
+      screenOptions={{ headerShown: false }}
+    >
       <LibraryStack.Screen name="Library" component={Library} />
-      <LibraryStack.Screen
-        name="LikedSongs"
-        component={LikedSongs}
-        options={{ headerShown: true ,title: "Liked Songs", headerStyle}}
-      />
+      <LibraryStack.Screen name="LikedSongs" component={LikedSongs} />
     </LibraryStack.Navigator>
   );
 }

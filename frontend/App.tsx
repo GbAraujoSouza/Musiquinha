@@ -12,12 +12,12 @@ import { useEffect } from "react";
 import { ThemeProvider } from "styled-components/native";
 import theme from "./src/theme";
 import Routes from "./src/routes";
-import { SafeAreaProvider, SafeAreaView } from "react-native-safe-area-context";
+import { SafeAreaProvider } from "react-native-safe-area-context";
+import { SafeAreaView } from "react-native";
 import "react-toastify/dist/ReactToastify.css";
 import { NavigationContainer } from "@react-navigation/native";
 import AuthProvider from "./src/contexts/AuthContext";
 import { ToastContainer } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
 
 SplashScreen.preventAutoHideAsync();
 

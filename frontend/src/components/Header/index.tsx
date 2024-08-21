@@ -1,6 +1,6 @@
 import React from "react";
 import { Container, HeaderTitle } from "./styles";
-import { Image } from "react-native";
+import { Image } from "expo-image";
 import DefaultUserProfile from "../../assets/default-user-profile.png";
 
 interface HeaderProps {
@@ -10,7 +10,7 @@ interface HeaderProps {
 const Header = ({ text }: HeaderProps) => {
   return (
     <Container>
-      <Image src={DefaultUserProfile} width={32} height={32}/>
+      <Image source={DefaultUserProfile}/>
       <HeaderTitle>{text}</HeaderTitle>
     </Container>
   );
