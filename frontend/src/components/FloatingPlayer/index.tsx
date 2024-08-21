@@ -2,28 +2,38 @@ import { Image } from "expo-image";
 import { Pressable, View } from "react-native";
 import { Track, useActiveTrack } from "react-native-track-player";
 import DefaultSongCover from "../../assets/default-song-cover.png";
-import { StyledPressable, TrackControlsContainer, TrackInfo, TrackTitle } from "./styles";
+import {
+  StyledPressable,
+  TrackArtist,
+  TrackControlsContainer,
+  TrackInfo,
+  TrackInfoContainer,
+  TrackTitle,
+} from "./styles";
 import { PlayPauseButton, SkipToNextButton } from "../PlayerControls";
+import { useLastActiveTrack } from "../../hooks/useLastActiveTrack";
 
 const FloatingPlayer = () => {
   const activeTrack = useActiveTrack();
+  const lastActiveTrack = useLastActiveTrack();
 
-  const displayTrack: Track = activeTrack ?? {
-    title: "example song",
-    url: "",
-  };
+  const displayTrack = activeTrack ?? lastActiveTrack;
 
   if (!displayTrack) return null;
 
   return (
     <StyledPressable>
-      <TrackInfo>
-        <Image source={displayTrack.artwork ?? DefaultSongCover} />
+      <TrackInfoContainer>
+        <Image
+          source={displayTrack.artwork ?? DefaultSongCover}
+          style={{ width: 40, height: 40, borderRadius: 8 }}
+        />
 
-        <View>
+        <TrackInfo>
           <TrackTitle>{displayTrack.title}</TrackTitle>
-        </View>
-      </TrackInfo>
+          <TrackArtist>{displayTrack.artist ?? "Unknown"}</TrackArtist>
+        </TrackInfo>
+      </TrackInfoContainer>
 
       <TrackControlsContainer>
         <PlayPauseButton iconSize={24} />

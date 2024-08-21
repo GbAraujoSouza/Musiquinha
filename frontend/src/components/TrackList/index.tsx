@@ -1,15 +1,16 @@
 import { FlatList } from "react-native";
 import TrackListItem from "../TrackListItem";
 import { ItemDivider } from "./styles";
-import { Track } from "react-native-track-player";
+import TrackPlayer, { Track } from "react-native-track-player";
 
 interface TrackListProps {
   tracks: Track[];
 }
 
 const TrackList = ({ tracks }: TrackListProps) => {
-  const handleTrackSelect = (track: Track) => {
-    console.log(track)
+  const handleTrackSelect = async (track: Track) => {
+    await TrackPlayer.load(track);
+    await TrackPlayer.play();
   }
 
   return (
