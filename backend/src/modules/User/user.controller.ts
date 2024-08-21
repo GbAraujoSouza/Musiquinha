@@ -1,4 +1,4 @@
-import { Request, Response } from "express";
+import { query, Request, Response } from "express";
 import { UserService } from "./user.service";
 import { ECrud } from "../../enum/crud.enum";
 import ErrorHandler from "../../utils/errorHandler";
@@ -30,8 +30,12 @@ export class UserController {
 
   public static async index(request: Request, response: Response) {
     try {
-      const limit = parseInt(request.query.limit as string) ?? 30;
-      const offset = parseInt(request.query.offset as string) ?? 0;
+      const limit = request.query.limit
+        ? parseInt(request.query.limit as string)
+        : 30;
+      const offset = request.query.offset
+        ? parseInt(request.query.offset as string)
+        : 0;
 
       const users = await UserService.index(limit, offset);
 

@@ -56,6 +56,12 @@ export class UserService {
     return await prisma.user.findMany({
       take: limit,
       skip: offset,
+      select: {
+        id: true,
+        name: true,
+        email: true,
+        isArtist: true,
+      }
     });
   }
 
