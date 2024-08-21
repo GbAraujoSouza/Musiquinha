@@ -1,13 +1,10 @@
-import { Image } from "expo-image";
-import { Text, TouchableHighlight, View } from "react-native";
+import { TouchableHighlight, View } from "react-native";
 import { TrackArtistText, TrackItemContainer, TrackItemImage, TrackTitleText } from "./styles";
+import { Track } from "react-native-track-player";
+import DefaultSongCover from  "../../assets/default-song-cover.png";
 
 interface TrackListItemProps {
-  track: {
-    title: string;
-    image?: string;
-    artist?: string;
-  };
+  track: Track;
 }
 
 const TrackListItem = ({ track }: TrackListItemProps) => {
@@ -16,7 +13,7 @@ const TrackListItem = ({ track }: TrackListItemProps) => {
       <TrackItemContainer>
         <View>
           <TrackItemImage
-            source={require( "../../assets/default-song-cover.png")}
+            source={track.artwork ?? DefaultSongCover}
           />
         </View>
 

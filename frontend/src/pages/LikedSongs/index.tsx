@@ -3,6 +3,7 @@ import { SemiboldText } from "../../theme/globalFonts";
 import { Container, HeaderContainer, HeaderTitle, SongsCount } from "./styles";
 import { ScrollView } from "react-native";
 import TrackList from "../../components/TrackList";
+import library from "../../assets/data/library.json";
 
 const LikedSongs = () => {
   return (
@@ -13,7 +14,7 @@ const LikedSongs = () => {
       </HeaderContainer>
 
       <ScrollView contentInsetAdjustmentBehavior="automatic">
-        <TrackList />
+        <TrackList tracks={library}/>
       </ScrollView>
     </Container>
   );

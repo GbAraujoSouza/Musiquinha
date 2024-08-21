@@ -1,22 +1,25 @@
 import { FlatList } from "react-native";
-import library from "../../assets/data/library.json";
 import TrackListItem from "../TrackListItem";
 import { ItemDivider } from "./styles";
+import { Track } from "react-native-track-player";
 
+interface CustomTrack extends Track {
+  abuleibe?: string;
+}
 
-const TrackList = () => {
+interface TrackListProps {
+  tracks: CustomTrack[];
+}
+
+const TrackList = ({ tracks }: TrackListProps) => {
   return (
     <FlatList
-      data={library}
+      data={tracks}
       ItemSeparatorComponent={ItemDivider}
-      contentContainerStyle={{paddingBottom: 128}}
+      contentContainerStyle={{ paddingBottom: 128 }}
       renderItem={({ item: track }) => (
         <TrackListItem
-          track={{
-            title: track.title,
-            artist: track.artist,
-            image: track.artwork,
-          }}
+          track={track}
         />
       )}
     />
