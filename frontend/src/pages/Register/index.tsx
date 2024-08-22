@@ -17,6 +17,7 @@ import FormButton from "../../components/FormButton";
 
 import AppLogoIcon from "../../assets/Logo.svg";
 import { MediumText } from "../../theme/globalFonts";
+import { useNavigation } from "@react-navigation/native";
 
 interface IRegisterData {
   name: string;
@@ -25,6 +26,8 @@ interface IRegisterData {
 }
 
 const Register = () => {
+  const navigation = useNavigation().navigate;
+
   const {
     control,
     handleSubmit,
@@ -102,11 +105,13 @@ const Register = () => {
       <FormButton text="Sign Up" onPress={handleSubmit(onSubmit)} />
 
       <SignupText>
-        Already have an account? <SignupLink>Login</SignupLink>
+        Already have an account?{" "}
+        <SignupLink onPress={() => navigation("Login" as never)}>
+          Login
+        </SignupLink>
       </SignupText>
     </FormContainer>
   );
 };
 
 export default Register;
-

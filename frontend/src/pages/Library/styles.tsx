@@ -1,20 +1,20 @@
 import styled from "styled-components/native";
 import { RegularText } from "../../theme/globalFonts";
 
-export const Container = styled.ScrollView`
+export const Container = styled.View`
   background-color: ${({ theme }) => theme.COLORS.BASE};
   padding: 0 32px;
 `;
 
 export const OptionsSection = styled.View`
   display: flex;
-  gap: 1.5rem;
+  gap: 24px;
   padding: 32px 0;
 `;
 
 export const LibrayOptionContainer = styled.View`
   display: flex;
-  gap: 1.7rem;
+  gap: 28px;
   align-items: center;
   flex-direction: row;
 `;

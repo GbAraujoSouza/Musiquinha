@@ -6,7 +6,7 @@ export const Container = styled.ScrollView`
   display: flex;
   flex-direction: row;
   gap: 16px;
-  padding-top: 2rem;
+  padding-top: 32px;
 `;
 
 export const HeaderTitle = styled(SemiboldText)`

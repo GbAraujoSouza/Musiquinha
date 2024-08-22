@@ -3,13 +3,13 @@ import { RegularText, SemiboldText } from "../../theme/globalFonts";
 
 export const Container = styled.View`
   background-color: ${({ theme }) => theme.COLORS.BASE};
-  padding: 0 2rem;
+  padding: 0 32px;
 `;
 
 export const HeaderContainer = styled.ScrollView`
   display: flex;
   flex-direction: column;
-  padding-top: 2rem;
+  padding-bottom: 16px;
 `;
 
 export const HeaderTitle = styled(SemiboldText)`

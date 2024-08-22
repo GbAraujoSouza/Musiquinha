@@ -6,7 +6,7 @@ export const FormContainer = styled.SafeAreaView`
   flex-direction: column;
   height: 100%;
   justify-content: center;
-  gap: 2.5rem;
+  gap: 40px;
   background-color: ${({ theme }) => theme.COLORS.BASE};
   padding: 30px;
 `;
@@ -19,7 +19,7 @@ export const Logo = styled.View`
   display: flex;
   flex-direction: row;
   align-items: center;
-  gap: 0.4rem;
+  gap: 8px;
 `;
 
 export const LogoText = styled(SemiboldText)`
@@ -27,32 +27,31 @@ export const LogoText = styled(SemiboldText)`
 `;
 
 export const Title = styled(SemiboldText)`
-  font-size: 1.5rem;
+  font-size: 24px;
 `;
 
 export const InputSection = styled.View`
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  gap: 0.5rem;
+  gap: 8px;
 `;
 
 export const StyledLabel = styled(MediumText)`
-  font-size: 1rem;
+  font-size: 16px;
 `
 
 export const StyledTextInput = styled.TextInput.attrs(({ theme }) => ({
   placeholderTextColor: theme.COLORS.OVERLAY0,
 }))`
   display: flex;
-  flex: 1;
   width: 100%;
-  padding: 1rem;
+  padding: 14px;
   align-items: center;
   border-radius: 8px;
   background: ${({ theme }) => theme.COLORS.SURFACE0};
   color: ${({ theme }) => theme.COLORS.TEXT};
-  font-size: 1rem;
+  font-size: 16px;
   outline-width: 0;
 `;
 

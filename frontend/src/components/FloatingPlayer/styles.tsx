@@ -40,7 +40,7 @@ export const StyledPressable = styled.Pressable`
 
   position: absolute;
   left: 0px;
-  bottom: 0px;
+  bottom: 60px;
 `;
 
 export const TrackInfoContainer = styled.View`

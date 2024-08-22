@@ -9,8 +9,10 @@ import {
 } from "./styles";
 import PlusIcon from "../../assets/icons/plus-icon.svg";
 import FavoriteIcon from "../../assets/icons/favorite-icon.svg";
+import { useNavigation } from "@react-navigation/native";
 
-const Library = ({ navigation }: any) => {
+const Library = () => {
+  const navigation = useNavigation().navigate;
   return (
     <Container>
       <Header text="My Library" />
@@ -21,8 +23,14 @@ const Library = ({ navigation }: any) => {
           </OptionPressable>
           <OptionText>Add New Playlist</OptionText>
         </LibrayOptionContainer>
+
         <LibrayOptionContainer>
-          <OptionPressable>
+          <OptionPressable
+            onPress={() => {
+              console.log("pressed");
+              navigation("LikedSongs" as never);
+            }}
+          >
             <FavoriteIcon />
           </OptionPressable>
           <OptionText>Your Liken Songs</OptionText>
@@ -30,8 +38,6 @@ const Library = ({ navigation }: any) => {
       </OptionsSection>
 
       <Divider />
-
-
     </Container>
   );
 };

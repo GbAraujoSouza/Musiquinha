@@ -9,6 +9,7 @@ import {
   LogoText,
   SignupLink,
   SignupText,
+  StyledLabel,
   StyledTextInput,
   Title,
 } from "./styles";
@@ -17,6 +18,8 @@ import FormButton from "../../components/FormButton";
 
 import AppLogoIcon from "../../assets/Logo.svg";
 import { useAuth } from "../../contexts/AuthContext";
+import { useNavigation } from "@react-navigation/native";
+import axios, { Axios } from "axios";
 
 interface ILoginData {
   email: string;
@@ -25,6 +28,8 @@ interface ILoginData {
 
 const Login = () => {
   const { loginUser } = useAuth();
+
+  const navigation = useNavigation().navigate;
 
   const {
     control,
@@ -37,9 +42,12 @@ const Login = () => {
     },
   });
 
-  const onSubmit: SubmitHandler<ILoginData> = (data) => {
+  const onSubmit: SubmitHandler<ILoginData> = async (data) => {
     console.log(data);
     loginUser(data.email, data.password);
+
+    // const response = await axios.get("http://localhost:3333/user/index")
+    // console.log(response.data)
   };
 
   return (
@@ -50,6 +58,7 @@ const Login = () => {
       </Logo>
       <Title>Sign in</Title>
       <InputSection>
+        <StyledLabel>Email</StyledLabel>
         <Controller
           name="email"
           control={control}
@@ -66,6 +75,7 @@ const Login = () => {
         {errors.email && <ErrorText>This is required</ErrorText>}
       </InputSection>
       <InputSection>
+        <StyledLabel>Password</StyledLabel>
         <Controller
           name="password"
           control={control}
@@ -87,7 +97,10 @@ const Login = () => {
       <FormButton text="Log In" onPress={handleSubmit(onSubmit)} />
 
       <SignupText>
-        Don't have an account? <SignupLink>Signup</SignupLink>
+        Don't have an account?
+        <SignupLink onPress={() => navigation("Register" as never)}>
+          Signup
+        </SignupLink>
       </SignupText>
     </FormContainer>
   );
