@@ -6,8 +6,10 @@ import Search from "../pages/Search";
 import { View, StyleSheet } from "react-native";
 import theme from "../theme";
 import { SvgProps } from "react-native-svg";
-import { BlurView } from "expo-blur";
-import { LibratyStackRoutes } from "./stack.routes";
+import { LibraryStackRoutes } from "./stack.routes";
+import Library from "../pages/Library";
+import LikedSongs from "../pages/LikedSongs";
+import Register from "../pages/Register";
 
 const Tab = createBottomTabNavigator();
 
@@ -36,25 +38,15 @@ export default function TabRoutes() {
         tabBarInactiveTintColor: theme.COLORS.TEXT,
         tabBarLabelStyle: {
           fontFamily: theme.FONT_FAMILY.POPPINS.SEMIBOLD,
-          fontSize: 12,
+          fontSize: 16,
         },
         tabBarStyle: {
           position: "absolute",
-          borderTopLeftRadius: 20,
-          borderTopRightRadius: 20,
           borderTopWidth: 0,
-          paddingTop: 8,
           backgroundColor: theme.COLORS.BASE,
+          height: 60,
+          paddingTop: 8,
         },
-        // tabBarBackground: () => (
-        //   <BlurView
-        //     intensity={75}
-        //     style={{
-        //       ...StyleSheet.absoluteFillObject,
-        //       overflow: "hidden"
-        //     }}
-        //   />
-        // ),
       }}
     >
       <Tab.Screen
@@ -78,8 +70,8 @@ export default function TabRoutes() {
       />
 
       <Tab.Screen
-        name="Library"
-        component={LibratyStackRoutes}
+        name="LibraryTab"
+        component={LibraryStackRoutes}
         options={{
           tabBarIcon: ({ color, size, focused }) => (
             <TabIcon icon="library" color={color} focused={focused} />

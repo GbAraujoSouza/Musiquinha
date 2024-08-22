@@ -4,6 +4,7 @@ import { UserProfile } from "../models/user";
 import AuthService from "../services/AuthService";
 // import { toast } from "react-toastify";
 import { NavigationProp, useNavigation } from "@react-navigation/native";
+import { Text } from "react-native";
 
 interface AuthContextValue {
   user: UserProfile | null;
@@ -81,7 +82,7 @@ const AuthProvider = ({ children }: React.PropsWithChildren) => {
           navigation.navigate("Main" as never);
         }
       })
-      .catch((e) => console.log("Server error ocurred"));
+      .catch((e) => console.log("Server error ocurred: "+e));
   };
 
   const isLoggedIn = () => !!user;
@@ -105,7 +106,7 @@ const AuthProvider = ({ children }: React.PropsWithChildren) => {
         isSignedIn: isLoggedIn,
       }}
     >
-      {isReady ? children : null}
+      {isReady ? children : <Text>Loading...</Text>}
     </AuthContext.Provider>
   );
 };

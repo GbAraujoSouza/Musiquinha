@@ -1,12 +1,25 @@
-import { AuthStackRoutes, LibratyStackRoutes } from "./stack.routes";
+import { NavigationContainer } from "@react-navigation/native";
+import { AuthStackRoutes, LibraryStackRoutes } from "./stack.routes";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
+import AuthProvider, { useAuth } from "../contexts/AuthContext";
+import FloatingPlayer from "../components/FloatingPlayer";
+import TabRoutes from "./tab.routes";
 
 const Routes = () => {
-  const RootStack = createNativeStackNavigator();
-
   return (
-    <LibratyStackRoutes />
+    <NavigationContainer>
+      <AuthProvider>
+        <AppRoutes />
+
+      </AuthProvider>
+    </NavigationContainer>
   );
+};
+
+const AppRoutes = () => {
+  const {isSignedIn} = useAuth();
+
+  return isSignedIn() ? <TabRoutes /> : <AuthStackRoutes />
 }
 
 export default Routes;

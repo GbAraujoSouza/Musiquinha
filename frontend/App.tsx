@@ -52,7 +52,7 @@ export default function App() {
     }
   }, [fontsLoaded, error, isPlayerReady]);
 
-  if (!fontsLoaded) {
+  if (!fontsLoaded && !isPlayerReady) {
     return null;
   }
 
@@ -63,14 +63,8 @@ export default function App() {
   return (
     <ThemeProvider theme={theme}>
       <SafeAreaProvider>
-        <StatusBar translucent backgroundColor={theme.COLORS.BASE} />
         <SafeAreaView style={{ flex: 1 }}>
-          <NavigationContainer>
-            <AuthProvider>
-              <Routes />
-              <FloatingPlayer />
-            </AuthProvider>
-          </NavigationContainer>
+          <Routes />
         </SafeAreaView>
       </SafeAreaProvider>
     </ThemeProvider>
