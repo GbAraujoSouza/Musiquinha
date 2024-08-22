@@ -6,10 +6,11 @@
     "orientation": "portrait",
     "icon": "./src/assets/icon.png",
     "userInterfaceStyle": "dark",
+    "backgroundColor": "#1e1e2e",
     "splash": {
       "image": "./src/assets/splash.png",
       "resizeMode": "contain",
-      "backgroundColor": "#ffffff"
+      "backgroundColor": "#1e1e2e"
     },
     "ios": {
       "supportsTablet": true,
@@ -23,7 +24,7 @@
     "android": {
       "adaptiveIcon": {
         "foregroundImage": "./src/assets/adaptive-icon.png",
-        "backgroundColor": "#eee"
+        "backgroundColor": "#1e1e2e"
       },
       "package": "com.gbaraujosouza.musiquinha"
     },

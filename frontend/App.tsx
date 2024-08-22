@@ -63,7 +63,7 @@ export default function App() {
   return (
     <ThemeProvider theme={theme}>
       <SafeAreaProvider>
-        <SafeAreaView style={{ flex: 1 }}>
+        <SafeAreaView style={{ flex: 1, backgroundColor: "#000"}}>
           <Routes />
         </SafeAreaView>
       </SafeAreaProvider>

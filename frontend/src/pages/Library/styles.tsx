@@ -4,6 +4,7 @@ import { RegularText } from "../../theme/globalFonts";
 export const Container = styled.View`
   background-color: ${({ theme }) => theme.COLORS.BASE};
   padding: 0 32px;
+  height: 100%;
 `;
 
 export const OptionsSection = styled.View`

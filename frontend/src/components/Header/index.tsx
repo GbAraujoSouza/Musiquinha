@@ -1,6 +1,5 @@
 import React from "react";
-import { Container, HeaderTitle } from "./styles";
-import { Image } from "expo-image";
+import { Container, HeaderImage, HeaderTitle } from "./styles";
 import DefaultUserProfile from "../../assets/default-user-profile.png";
 
 interface HeaderProps {
@@ -10,7 +9,7 @@ interface HeaderProps {
 const Header = ({ text }: HeaderProps) => {
   return (
     <Container>
-      <Image source={DefaultUserProfile}/>
+      <HeaderImage source={DefaultUserProfile}/>
       <HeaderTitle>{text}</HeaderTitle>
     </Container>
   );
