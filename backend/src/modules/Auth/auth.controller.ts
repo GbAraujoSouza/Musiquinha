@@ -11,7 +11,7 @@ export class AuthController {
 
       return response.status(200).json({
         message: ECrud.CREATE,
-        data: await AuthService.login(email, password),
+        ...await AuthService.login(email, password),
       });
     } catch (error) {
       switch (ErrorHandler.getErrorMessage(error)) {

@@ -28,6 +28,25 @@ export class SongService {
   private static randomSongName = (bytes: number = 32) =>
     crypto.randomBytes(bytes).toString("hex");
 
+  private static async appendPublicSongUrl(songs: Song[]) {
+    const songsWithPublicUrls: SongWithPublicUrl[] = [];
+
+    for (const song of songs) {
+      const getObjectParams = {
+        Bucket: this.bucketName,
+        Key: song.url,
+      };
+      const command = new GetObjectCommand(getObjectParams);
+      const url = await getSignedUrl(this.s3, command, { expiresIn: 3600 });
+
+      songsWithPublicUrls.push({
+        ...song,
+        songPublicUrl: url,
+      });
+    }
+    return songsWithPublicUrls;
+  }
+
   public static async create(
     title: string,
     file: Express.Multer.File,
@@ -111,7 +130,9 @@ export class SongService {
       },
     });
 
-    return songs;
+    const songsWithUrl = await this.appendPublicSongUrl(songs);
+
+    return songsWithUrl;
   }
 
   public static async show(songId: string) {
@@ -145,22 +166,10 @@ export class SongService {
     });
 
     if (likedSongs) {
-      const songsWithPublicUrls: SongWithPublicUrl[] = [];
-
-      for (const song of likedSongs.songs) {
-        const getObjectParams = {
-          Bucket: this.bucketName,
-          Key: song.url,
-        };
-        const command = new GetObjectCommand(getObjectParams);
-        const url = await getSignedUrl(this.s3, command, { expiresIn: 3600 });
-
-        songsWithPublicUrls.push({
-          ...song,
-          songPublicUrl: url,
-        });
-      }
-      return songsWithPublicUrls;
+      const likedSongsWithUrl = await this.appendPublicSongUrl(
+        likedSongs.songs,
+      );
+      return likedSongsWithUrl;
     }
   }
 
@@ -245,6 +254,8 @@ export class SongService {
           _count: "desc",
         },
       },
+      take: limit,
+      skip: 0,
       include: {
         artist: {
           select: {
@@ -255,6 +266,8 @@ export class SongService {
       },
     });
 
-    return songs;
+    const songsWithUrl = await this.appendPublicSongUrl(songs);
+
+    return songsWithUrl;
   }
 }
