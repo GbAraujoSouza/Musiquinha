@@ -40,7 +40,7 @@ model Song {
   title    String
   artist   User   @relation("UserSongs", fields: [artistId], references: [id], onDelete: Cascade)
   artistId String
-  url      String
+  key      String
 
   album   Album?  @relation("SongAlbum", fields: [albumId], references: [id], onDelete: SetNull)
   albumId String?
