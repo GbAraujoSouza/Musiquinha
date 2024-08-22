@@ -10,16 +10,22 @@ const Routes = () => {
     <NavigationContainer>
       <AuthProvider>
         <AppRoutes />
-
       </AuthProvider>
     </NavigationContainer>
   );
 };
 
 const AppRoutes = () => {
-  const {isSignedIn} = useAuth();
+  const { isSignedIn } = useAuth();
 
-  return isSignedIn() ? <TabRoutes /> : <AuthStackRoutes />
-}
+  return isSignedIn() ? (
+    <>
+      <TabRoutes />
+      <FloatingPlayer />
+    </>
+  ) : (
+    <AuthStackRoutes />
+  );
+};
 
 export default Routes;
