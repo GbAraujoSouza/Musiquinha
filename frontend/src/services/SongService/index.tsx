@@ -17,7 +17,10 @@ export default {
     }
   },
 
-  async getFavorites(userId: string, token: string): Promise<AxiosPromise<any> | null> {
+  async getFavorites(
+    userId: string,
+    token: string,
+  ): Promise<AxiosPromise<any> | null> {
     try {
       const response = api.get(`/song/favorites/${userId}`, {
         headers: {
@@ -33,7 +36,44 @@ export default {
 
   async favoriteSong(songId: string, token: string) {
     try {
-      const response = api.put(`/song/favorite-song/${songId}`, {}, {
+      const response = api.put(
+        `/song/favorite-song/${songId}`,
+        {},
+        {
+          headers: {
+            Authorization: token,
+          },
+        },
+      );
+      return response;
+    } catch (error) {
+      handleError(error);
+      return null;
+    }
+  },
+
+  async unFavoriteSong(songId: string, token: string) {
+    try {
+      const response = api.put(
+        `/song/unfavorite-song/${songId}`,
+        {},
+        {
+          headers: {
+            Authorization: token,
+          },
+        },
+      );
+      return response;
+    } catch (error) {
+      handleError(error);
+      return null;
+    }
+  },
+
+  async searchSongs(token: string, query?: string) {
+    try {
+      const response = api.get(`/song/search-songs/`, {
+        params: { title: query },
         headers: {
           Authorization: token,
         },
@@ -44,19 +84,4 @@ export default {
       return null;
     }
   },
-
-  async unFavoriteSong(songId: string, token: string) {
-    try {
-      const response = api.put(`/song/unfavorite-song/${songId}`, {}, {
-        headers: {
-          Authorization: token,
-        },
-      });
-      return response;
-    } catch (error) {
-      handleError(error);
-      return null;
-    }
-
-  }
 };
