@@ -2,7 +2,7 @@ import styled from "styled-components/native";
 import { Image } from "expo-image";
 import { BoldText } from "../../theme/globalFonts";
 
-export const Container = styled.View`
+export const Container = styled.ScrollView`
   background-color: ${({ theme }) => theme.COLORS.BASE};
   padding: 0 32px;
   height: 100%;
@@ -22,7 +22,7 @@ export const TopSongImage = styled(Image)`
 `;
 
 export const Section = styled.View`
-  padding-top: 16px;
+  padding: 16px 0;
 `;
 
 export const SectionTitle = styled(BoldText)`

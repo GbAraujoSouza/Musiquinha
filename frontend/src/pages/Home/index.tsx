@@ -91,6 +91,7 @@ const Home = () => {
           keyExtractor={((item) => item.id)}
         />
         </Section>
+
     </Container>
   );
 };
