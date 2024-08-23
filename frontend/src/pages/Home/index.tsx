@@ -14,6 +14,8 @@ import { ActivityIndicator, FlatList, Pressable, View } from "react-native";
 import TrackPlayer, { Track } from "react-native-track-player";
 import SongService from "../../services/SongService";
 import mapSongToTrack from "../../helpers/mapSongToTrack";
+import FocusAwareStatusBar from "../../components/FocusAwareStatusBar";
+import theme from "../../theme";
 
 interface TopSongProps {
   track: Track;
@@ -47,41 +49,36 @@ const Home = () => {
       try {
         const response = await SongService.getTopSongs(token!);
         const mappedSongs = response?.data.data.map((song: Song) =>
-        mapSongToTrack(song)
-      );
-        setSongs(mappedSongs || [])
+          mapSongToTrack(song),
+        );
+        setSongs(mappedSongs || []);
       } catch (error) {
-        console.log(error) 
+        console.log(error);
       }
-    }
+    };
 
     fetchTopSongs();
-  },[])
+  }, []);
 
   // if (loading) return <ActivityIndicator />
   // if (error) return <Text>Error: {error}</Text>
 
   return (
-
     <Container>
       <Header text={`Hi ${user?.name}`} />
 
-        <Section>
-          <SectionTitle>Top Songs</SectionTitle>
-          <FlatList
+      <Section>
+        <SectionTitle>Top Songs</SectionTitle>
+        <FlatList
           data={songs}
           horizontal
           showsHorizontalScrollIndicator={false}
           renderItem={({ item: track }) => (
-            <TopSong
-              track={track}
-              onTrackSelect={handleTrackSelect}
-            />
+            <TopSong track={track} onTrackSelect={handleTrackSelect} />
           )}
-          keyExtractor={((item) => item.id)}
+          keyExtractor={(item) => item.id}
         />
-        </Section>
-
+      </Section>
     </Container>
   );
 };

@@ -10,6 +10,8 @@ import TrackList from "../../components/TrackList";
 import { RegularText } from "../../theme/globalFonts";
 import EmptySearchImage from "../../assets/empty-search.png";
 import { Image } from "expo-image";
+import FocusAwareStatusBar from "../../components/FocusAwareStatusBar";
+import theme from "../../theme";
 
 const SearchScreen: React.FC = () => {
   const [searchTerm, setSearchTerm] = useState("");
@@ -53,7 +55,7 @@ const SearchScreen: React.FC = () => {
         {loading ? (
           <RegularText>Loading...</RegularText>
         ) : songs.length === 0 ? (
-          <NoResultsImage source={EmptySearchImage}/>
+          <NoResultsImage source={EmptySearchImage} />
         ) : (
           <TrackList tracks={songs} />
         )}

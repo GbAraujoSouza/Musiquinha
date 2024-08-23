@@ -16,8 +16,8 @@ export function LibraryStackRoutes() {
       screenOptions={{
         headerShown: false,
         // title: "",
-        statusBarStyle: "light",
-        statusBarColor: theme.COLORS.BASE,
+        // statusBarStyle: "light",
+        // statusBarColor: theme.COLORS.BASE,
         // headerStyle: { backgroundColor: theme.COLORS.BASE },
         // headerTintColor: theme.COLORS.TEXT,
       }}

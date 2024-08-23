@@ -5,14 +5,23 @@ import AuthProvider, { useAuth } from "../contexts/AuthContext";
 import FloatingPlayer from "../components/FloatingPlayer";
 import TabRoutes from "./tab.routes";
 import { FavoritesProvider } from "../contexts/FavoritesContext";
+import { PlaylistsProvider } from "../contexts/PlaylistContext";
+import { StatusBar } from "react-native";
+import theme from "../theme";
 
 const Routes = () => {
   return (
     <NavigationContainer>
       <AuthProvider>
-        <FavoritesProvider>
-          <AppRoutes />
-        </FavoritesProvider>
+        <PlaylistsProvider>
+          <FavoritesProvider>
+            <AppRoutes />
+            <StatusBar
+              barStyle="light-content"
+              backgroundColor={theme.COLORS.BASE}
+            />
+          </FavoritesProvider>
+        </PlaylistsProvider>
       </AuthProvider>
     </NavigationContainer>
   );
