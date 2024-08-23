@@ -70,7 +70,8 @@ export default function TabRoutes() {
       />
 
       <Tab.Screen
-        name="LibraryTab"
+        name="Library"
+        
         component={LibraryStackRoutes}
         options={{
           tabBarIcon: ({ color, size, focused }) => (

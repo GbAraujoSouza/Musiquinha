@@ -7,6 +7,7 @@ import React, {
 } from "react";
 import { useAuth } from "./AuthContext";
 import PlaylistService from "../services/PlaylistService";
+import { Playlist } from "../models/playlist";
 
 interface PlaylistsContextValue {
   playlists: Playlist[];

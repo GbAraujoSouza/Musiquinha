@@ -15,14 +15,9 @@ export function LibraryStackRoutes() {
     <LibraryStack.Navigator
       screenOptions={{
         headerShown: false,
-        // title: "",
-        // statusBarStyle: "light",
-        // statusBarColor: theme.COLORS.BASE,
-        // headerStyle: { backgroundColor: theme.COLORS.BASE },
-        // headerTintColor: theme.COLORS.TEXT,
       }}
     >
-      <LibraryStack.Screen name="Library" component={Library} />
+      <LibraryStack.Screen name="LibraryScreen" component={Library} />
       <LibraryStack.Screen name="LikedSongs" component={LikedSongs} />
     </LibraryStack.Navigator>
   );

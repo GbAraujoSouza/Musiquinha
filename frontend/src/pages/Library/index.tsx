@@ -11,9 +11,15 @@ import PlusIcon from "../../assets/icons/plus-icon.svg";
 import FavoriteIcon from "../../assets/icons/favorite-icon.svg";
 import { useNavigation } from "@react-navigation/native";
 import theme from "../../theme";
+import { PlaylistsList } from "../../components/PlaylistList";
+import { usePlaylists } from "../../contexts/PlaylistContext";
 
 const Library = () => {
   const navigation = useNavigation().navigate;
+  const {playlists} = usePlaylists();
+
+  const handlePlaylistPress = () => {}
+
   return (
     <Container>
       <Header text="My Library" />
@@ -38,6 +44,8 @@ const Library = () => {
       </OptionsSection>
 
       <Divider />
+
+      <PlaylistsList playlists={playlists} onPlaylistPress={handlePlaylistPress}/>
     </Container>
   );
 };

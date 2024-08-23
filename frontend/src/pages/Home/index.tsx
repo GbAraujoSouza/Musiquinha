@@ -14,7 +14,6 @@ import { ActivityIndicator, FlatList, Pressable, View } from "react-native";
 import TrackPlayer, { Track } from "react-native-track-player";
 import SongService from "../../services/SongService";
 import mapSongToTrack from "../../helpers/mapSongToTrack";
-import FocusAwareStatusBar from "../../components/FocusAwareStatusBar";
 import theme from "../../theme";
 
 interface TopSongProps {
