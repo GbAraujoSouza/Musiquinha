@@ -29,7 +29,7 @@ export class SongService {
   private static randomSongName = (bytes: number = 32) =>
     crypto.randomBytes(bytes).toString("hex");
 
-  private static async appendPublicSongUrl(songs: Song[]) {
+  public static async appendPublicSongUrl(songs: Song[]) {
     const songsWithPublicUrls: SongWithPublicUrl[] = [];
 
     for (const song of songs) {

@@ -1,6 +1,7 @@
 import { Prisma, Playlist, Song } from "@prisma/client";
 import prisma from "../../prismaConnection";
 import { EStatusErrors } from "../../enum/status-errors.enum";
+import { SongService } from "../Song/song.service";
 
 export class PlaylistService {
   public static async create(
@@ -33,13 +34,34 @@ export class PlaylistService {
       where: { userId },
       include: {
         user: { select: { name: true, email: true, id: true } },
-        songs: true,
+        songs: {
+          include: {
+            artist: {
+              select: {
+                name: true,
+              },
+            },
+            album: true,
+          },
+        },
       },
     });
 
     if (!playlists) throw new Error(EStatusErrors.E404);
 
-    return playlists;
+    const playlistsWithPublicUrls = await Promise.all(
+      playlists.map(async (playlist) => {
+        const songsWithPublicUrls = await SongService.appendPublicSongUrl(
+          playlist.songs,
+        );
+        return {
+          ...playlist,
+          songs: songsWithPublicUrls,
+        };
+      }),
+    );
+
+    return playlistsWithPublicUrls;
   }
 
   public static async show(playlistId: string): Promise<Playlist> {
