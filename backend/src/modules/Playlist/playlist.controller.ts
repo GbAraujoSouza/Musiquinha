@@ -29,7 +29,9 @@ export class PlaylistController {
 
   public static async index(request: Request, response: Response) {
     try {
-      const playlists = await PlaylistService.index();
+
+      const userId = request.user as string;
+      const playlists = await PlaylistService.index(userId);
 
       return response.status(200).json({
         message: ECrud.READ,

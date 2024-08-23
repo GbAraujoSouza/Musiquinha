@@ -6,7 +6,7 @@ export class PlaylistService {
   public static async create(
     name: string,
     description: string,
-    userId: string
+    userId: string,
   ) {
     const playlistInput: Prisma.PlaylistCreateInput = {
       name,
@@ -28,10 +28,11 @@ export class PlaylistService {
     return createdPlaylist;
   }
 
-  public static async index(): Promise<Playlist[]> {
+  public static async index(userId: string): Promise<Playlist[]> {
     const playlists = await prisma.playlist.findMany({
+      where: { userId },
       include: {
-        user: true,
+        user: { select: { name: true, email: true, id: true } },
         songs: true,
       },
     });
@@ -45,7 +46,7 @@ export class PlaylistService {
     const playlist = await prisma.playlist.findUnique({
       where: { id: playlistId },
       include: {
-        user: true,
+        user: { select: { id: true, name: true, email: true } },
         songs: true,
       },
     });
@@ -58,7 +59,7 @@ export class PlaylistService {
   public static async update(
     playlistId: string,
     name: string,
-    description: string
+    description: string,
   ): Promise<Playlist> {
     const updatedPlaylist = await prisma.playlist.update({
       where: { id: playlistId },
@@ -84,7 +85,7 @@ export class PlaylistService {
 
   public static async addSong(
     playlistId: string,
-    songId: string
+    songId: string,
   ): Promise<Playlist> {
     const updatedPlaylist = await prisma.playlist.update({
       where: { id: playlistId },
@@ -107,7 +108,7 @@ export class PlaylistService {
 
   public static async removeSong(
     playlistId: string,
-    songId: string
+    songId: string,
   ): Promise<Playlist> {
     const updatedPlaylist = await prisma.playlist.update({
       where: { id: playlistId },
