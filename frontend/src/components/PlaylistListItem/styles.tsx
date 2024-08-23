@@ -5,7 +5,7 @@ import { RegularText } from "../../theme/globalFonts";
 export const PlaylistItemContainer = styled.View`
   display: flex;
   flex-direction: row;
-  gap: 0.8px;
+  gap: 9px;
   align-items: center;
 `;
 
@@ -21,5 +21,5 @@ export const PlaylistItemTitle = styled(RegularText)`
 
 export const MusicCountText = styled(RegularText)`
   font-size: 16px;
-  color: ${({theme}) => theme.COLORS.SURFACE1}
+  color: ${({theme}) => theme.COLORS.BLUE}
 `

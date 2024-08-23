@@ -6,6 +6,7 @@ import Login from "../pages/Login";
 import Register from "../pages/Register";
 import TabRoutes from "./tab.routes";
 import theme from "../theme";
+import PlaylistDetails from "../pages/PlaylistDetails";
 
 const LibraryStack = createNativeStackNavigator();
 const AuthStack = createNativeStackNavigator();
@@ -19,6 +20,7 @@ export function LibraryStackRoutes() {
     >
       <LibraryStack.Screen name="LibraryScreen" component={Library} />
       <LibraryStack.Screen name="LikedSongs" component={LikedSongs} />
+      <LibraryStack.Screen name="PlaylistDetails" component={PlaylistDetails} />
     </LibraryStack.Navigator>
   );
 }
