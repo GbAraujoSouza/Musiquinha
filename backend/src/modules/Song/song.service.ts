@@ -34,7 +34,7 @@ export class SongService {
     for (const song of songs) {
       const getObjectParams = {
         Bucket: this.bucketName,
-        Key: song.url,
+        Key: song.key,
       };
       const command = new GetObjectCommand(getObjectParams);
       const url = await getSignedUrl(this.s3, command, { expiresIn: 3600 });
@@ -67,7 +67,7 @@ export class SongService {
 
     const songInput: Prisma.SongCreateInput = {
       title,
-      url: songName,
+      key: songName,
       artist: {
         connect: {
           id: artistId,
@@ -93,7 +93,7 @@ export class SongService {
     for (const song of findSongs) {
       const getObjectParams = {
         Bucket: this.bucketName,
-        Key: song.url,
+        Key: song.key,
       };
       const command = new GetObjectCommand(getObjectParams);
       const url = await getSignedUrl(this.s3, command, { expiresIn: 3600 });
@@ -142,7 +142,7 @@ export class SongService {
 
     if (!findMusic) throw new Error(EStatusErrors.E404);
 
-    const songUrl = `${process.env.APP_URL}/uploads/${findMusic.url}`;
+    const songUrl = `${process.env.APP_URL}/uploads/${findMusic.key}`;
 
     return { ...findMusic, songUrl };
   }
