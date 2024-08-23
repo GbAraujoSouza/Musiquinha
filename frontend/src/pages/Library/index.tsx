@@ -10,6 +10,7 @@ import {
 import PlusIcon from "../../assets/icons/plus-icon.svg";
 import FavoriteIcon from "../../assets/icons/favorite-icon.svg";
 import { useNavigation } from "@react-navigation/native";
+import theme from "../../theme";
 
 const Library = () => {
   const navigation = useNavigation().navigate;
@@ -19,7 +20,7 @@ const Library = () => {
       <OptionsSection>
         <LibrayOptionContainer>
           <OptionPressable>
-            <PlusIcon />
+            <PlusIcon width={30} height={30} fill={theme.COLORS.BASE}/>
           </OptionPressable>
           <OptionText>Add New Playlist</OptionText>
         </LibrayOptionContainer>
@@ -27,11 +28,10 @@ const Library = () => {
         <LibrayOptionContainer>
           <OptionPressable
             onPress={() => {
-              console.log("pressed");
               navigation("LikedSongs" as never);
             }}
           >
-            <FavoriteIcon />
+            <FavoriteIcon width={30} height={30} fill={theme.COLORS.BASE}/>
           </OptionPressable>
           <OptionText>Your Liken Songs</OptionText>
         </LibrayOptionContainer>

@@ -27,7 +27,8 @@ export const OptionText = styled(RegularText)`
 export const OptionPressable = styled.Pressable`
   width: 56px;
   height: 56px;
-  padding: 16px;
+  justify-content: center;
+  align-items: center;
   border-radius: 16px;
   background-color: ${({ theme }) => theme.COLORS.MAUVE};
 `;
