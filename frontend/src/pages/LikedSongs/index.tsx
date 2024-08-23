@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Container, HeaderContainer, HeaderTitle, SongsCount } from "./styles";
 import TrackList from "../../components/TrackList";
-import library from "../../assets/data/library.json";
 import { useAuth } from "../../contexts/AuthContext";
 import { Track } from "react-native-track-player";
 import SongService from "../../services/SongService";
@@ -15,7 +14,7 @@ const LikedSongs = () => {
   useEffect(() => {
     const fetchTopSongs = async () => {
       try {
-        const response = await SongService.getFavorites(user?.id!, token!);
+        const response = await SongService.getFavorites(token!);
         const mappedSongs = response?.data.data.map((song: Song) =>
           mapSongToTrack(song),
         );

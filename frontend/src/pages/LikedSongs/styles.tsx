@@ -10,7 +10,7 @@ export const Container = styled.View`
 export const HeaderContainer = styled.View`
   display: flex;
   flex-direction: column;
-  padding-bottom: 16px;
+  padding: 16px 0 32px 0;
 `;
 
 export const HeaderTitle = styled(SemiboldText)`

@@ -12,7 +12,7 @@ interface AuthContextValue {
   token: string | null;
 
   isSignedIn: () => boolean;
-  registerUser: (email: string, name: string, password: string) => void;
+  registerUser: (name: string, email: string, password: string) => void;
   loginUser: (email: string, password: string) => void;
   logout: () => void;
 }
@@ -42,7 +42,7 @@ const AuthProvider = ({ children }: React.PropsWithChildren) => {
       if (user && token) {
         setUser(JSON.parse(user));
         setAuthorizationToken("Bearer ".concat(token));
-        axios.defaults.headers.common["Authorization"] = `Bearer ${token}`;
+        // axios.defaults.headers.common["Authorization"] = `Bearer ${token}`;
       }
 
       setIsReady(true);
@@ -75,12 +75,11 @@ const AuthProvider = ({ children }: React.PropsWithChildren) => {
             "user",
             JSON.stringify(response.data.user),
           );
-
           setAuthorizationToken(response.data.token);
           setUser(response.data.user);
 
-          axios.defaults.headers.common["Authorization"] =
-            `Bearer ${response.data.token}`;
+          // axios.defaults.headers.common["Authorization"] =
+          //   `Bearer ${response.data.token}`;
 
           // toast.success("Login Success!");
           // navigation.navigate("Home" as never);
@@ -97,7 +96,6 @@ const AuthProvider = ({ children }: React.PropsWithChildren) => {
     await AsyncStorage.removeItem("user");
     setUser(null);
     setAuthorizationToken("");
-    delete axios.defaults.headers.common["Authorization"];
     navigation.navigate("Login" as never);
   };
 

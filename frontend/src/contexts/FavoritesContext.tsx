@@ -17,13 +17,12 @@ const FavoritesContext = createContext<FavoritesContextValue | null>(null);
 export const FavoritesProvider = ({ children }: FavoritesProviderProps) => {
   const [favoriteSongsId, setFavoriteSongsId] = useState<string[]>([]);
 
-  const { user, token } = useAuth();
+  const { token } = useAuth();
 
   useEffect(() => {
     const fetchFavoriteSongs = async () => {
       try {
-        const userId = user?.id as string;
-        const favorites = await SongService.getFavorites(userId, token as string);
+        const favorites = await SongService.getFavorites(token as string);
 
         setFavoriteSongsId(favorites?.data.data.map((song: Song) => song.id));
       } catch (error) {

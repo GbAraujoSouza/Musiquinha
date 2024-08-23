@@ -14,11 +14,12 @@ export function LibraryStackRoutes() {
   return (
     <LibraryStack.Navigator
       screenOptions={{
-        headerShown: true,
-        title: "",
-        statusBarStyle: "dark",
-        headerStyle: { backgroundColor: theme.COLORS.BASE },
-        headerTintColor: theme.COLORS.TEXT,
+        headerShown: false,
+        // title: "",
+        statusBarStyle: "light",
+        statusBarColor: theme.COLORS.BASE,
+        // headerStyle: { backgroundColor: theme.COLORS.BASE },
+        // headerTintColor: theme.COLORS.TEXT,
       }}
     >
       <LibraryStack.Screen name="Library" component={Library} />

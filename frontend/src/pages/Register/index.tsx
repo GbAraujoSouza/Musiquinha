@@ -1,7 +1,6 @@
 import React from "react";
 import {
   ErrorText,
-  ForgotPasswordText,
   FormContainer,
   InputSection,
   Logo,
@@ -16,8 +15,8 @@ import { Controller, SubmitHandler, useForm } from "react-hook-form";
 import FormButton from "../../components/FormButton";
 
 import AppLogoIcon from "../../assets/Logo.svg";
-import { MediumText } from "../../theme/globalFonts";
 import { useNavigation } from "@react-navigation/native";
+import { useAuth } from "../../contexts/AuthContext";
 
 interface IRegisterData {
   name: string;
@@ -27,6 +26,7 @@ interface IRegisterData {
 
 const Register = () => {
   const navigation = useNavigation().navigate;
+  const { registerUser } = useAuth();
 
   const {
     control,
@@ -40,7 +40,10 @@ const Register = () => {
     },
   });
 
-  const onSubmit: SubmitHandler<IRegisterData> = (data) => console.log(data);
+  const onSubmit: SubmitHandler<IRegisterData> = (data) => {
+    console.log(data);
+    registerUser(data.name, data.email, data.password);
+  };
 
   return (
     <FormContainer>

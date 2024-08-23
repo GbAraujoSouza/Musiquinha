@@ -18,11 +18,10 @@ export default {
   },
 
   async getFavorites(
-    userId: string,
     token: string,
   ): Promise<AxiosPromise<any> | null> {
     try {
-      const response = api.get(`/song/favorites/${userId}`, {
+      const response = api.get(`/song/favorites`, {
         headers: {
           Authorization: token,
         },

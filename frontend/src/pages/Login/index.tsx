@@ -19,7 +19,6 @@ import FormButton from "../../components/FormButton";
 import AppLogoIcon from "../../assets/Logo.svg";
 import { useAuth } from "../../contexts/AuthContext";
 import { useNavigation } from "@react-navigation/native";
-import axios, { Axios } from "axios";
 
 interface ILoginData {
   email: string;
@@ -45,9 +44,6 @@ const Login = () => {
   const onSubmit: SubmitHandler<ILoginData> = async (data) => {
     console.log(data);
     loginUser(data.email, data.password);
-
-    // const response = await axios.get("http://localhost:3333/user/index")
-    // console.log(response.data)
   };
 
   return (
