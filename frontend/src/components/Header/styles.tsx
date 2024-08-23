@@ -5,13 +5,20 @@ import { Image } from "expo-image";
 export const Container = styled.View`
   display: flex;
   flex-direction: row;
-  gap: 16px;
   padding-top: 32px;
   align-items: center;
+  justify-content: space-between;
 `;
 
 export const HeaderTitle = styled(SemiboldText)`
   font-size: 22px;
+`;
+
+export const HeaderInfo = styled.View`
+  display: flex;
+  flex-direction: row;
+  gap: 16px;
+  align-items: center;
 `;
 
 export const HeaderImage = styled(Image)`
