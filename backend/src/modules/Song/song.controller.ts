@@ -152,4 +152,18 @@ export class SongController {
         .json({ error: ErrorHandler.getErrorMessage(error) });
     }
   }
+
+  public static async deleteSong(request: Request, response: Response) {
+    try {
+      const { songId } = request.params;
+
+      await SongService.deleteSong(songId);
+
+      return response.status(200).send(ECrud.DELETE);
+    } catch (error) {
+      return response
+        .status(404)
+        .json({ error: ErrorHandler.getErrorMessage(error) });
+    }
+  }
 }

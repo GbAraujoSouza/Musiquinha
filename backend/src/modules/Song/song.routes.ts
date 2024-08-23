@@ -62,5 +62,12 @@ router.get(
   SongController.show,
 );
 
+router.delete(
+  `${baseUrl}/:songId/user/:userId`,
+  passport.authenticate("jwt", { session: false }),
+  CheckOwnerMiddleware.checkOwner,
+  SongController.deleteSong,
+);
+
 export const songRouter = router;
 

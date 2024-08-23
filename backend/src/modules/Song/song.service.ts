@@ -5,6 +5,7 @@ import {
   S3Client,
   PutObjectCommand,
   GetObjectCommand,
+  DeleteObjectCommand,
 } from "@aws-sdk/client-s3";
 import { getSignedUrl } from "@aws-sdk/s3-request-presigner";
 import crypto from "crypto";
@@ -269,5 +270,21 @@ export class SongService {
     const songsWithUrl = await this.appendPublicSongUrl(songs);
 
     return songsWithUrl;
+  }
+
+  public static async deleteSong(songId: string) {
+    const song = await prisma.song.findUnique({ where: { id: songId } });
+
+    if (!song) throw new Error(EStatusErrors.E404);
+
+    const params = {
+      Bucket: this.bucketName,
+      Key: song.key,
+    };
+
+    const command = new DeleteObjectCommand(params);
+    await this.s3.send(command);
+
+    await prisma.song.delete({ where: { id: songId } });
   }
 }
