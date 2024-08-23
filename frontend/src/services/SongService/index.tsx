@@ -33,7 +33,7 @@ export default {
 
   async favoriteSong(songId: string, token: string) {
     try {
-      const response = api.get(`/song/favorite-song/${songId}`, {
+      const response = api.put(`/song/favorite-song/${songId}`, {}, {
         headers: {
           Authorization: token,
         },
@@ -47,7 +47,7 @@ export default {
 
   async unFavoriteSong(songId: string, token: string) {
     try {
-      const response = api.get(`/song/unfavorite-song/${songId}`, {
+      const response = api.put(`/song/unfavorite-song/${songId}`, {}, {
         headers: {
           Authorization: token,
         },

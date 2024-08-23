@@ -1,6 +1,6 @@
 import { Image } from "expo-image";
-import { Pressable, View } from "react-native";
-import { Track, useActiveTrack } from "react-native-track-player";
+import { Pressable } from "react-native";
+import { useActiveTrack } from "react-native-track-player";
 import DefaultSongCover from "../../assets/default-song-cover.png";
 import {
   StyledPressable,
@@ -12,10 +12,15 @@ import {
 } from "./styles";
 import { PlayPauseButton, SkipToNextButton } from "../PlayerControls";
 import { useLastActiveTrack } from "../../hooks/useLastActiveTrack";
+import { FontAwesome } from "@expo/vector-icons";
+import { useFavorites } from "../../contexts/FavoritesContext";
+import theme from "../../theme";
 
 const FloatingPlayer = () => {
   const activeTrack = useActiveTrack();
   const lastActiveTrack = useLastActiveTrack();
+
+  const { isFavorite, toggleFavorite } = useFavorites();
 
   const displayTrack = activeTrack ?? lastActiveTrack;
 
@@ -25,7 +30,7 @@ const FloatingPlayer = () => {
     <StyledPressable>
       <TrackInfoContainer>
         <Image
-          source={displayTrack.artwork ?? DefaultSongCover}
+          source={displayTrack ?? DefaultSongCover}
           style={{ width: 40, height: 40, borderRadius: 8 }}
         />
 
@@ -33,6 +38,14 @@ const FloatingPlayer = () => {
           <TrackTitle>{displayTrack.title}</TrackTitle>
           <TrackArtist>{displayTrack.artist ?? "Unknown"}</TrackArtist>
         </TrackInfo>
+
+        <Pressable onPress={() => toggleFavorite(displayTrack.id)}>
+          <FontAwesome
+            name={isFavorite(displayTrack.id) ? "heart" : "heart-o"}
+            size={24}
+            color={theme.COLORS.RED}
+          />
+        </Pressable>
       </TrackInfoContainer>
 
       <TrackControlsContainer>
