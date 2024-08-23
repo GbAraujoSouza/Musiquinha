@@ -30,8 +30,8 @@ const FloatingPlayer = () => {
     <StyledPressable>
       <TrackInfoContainer>
         <Image
-          source={displayTrack ?? DefaultSongCover}
-          style={{ width: 40, height: 40, borderRadius: 8 }}
+          source={displayTrack.artwork ?? DefaultSongCover}
+          style={{ width: 50, height: 50, borderRadius: 8 }}
         />
 
         <TrackInfo>
@@ -44,6 +44,7 @@ const FloatingPlayer = () => {
             name={isFavorite(displayTrack.id) ? "heart" : "heart-o"}
             size={24}
             color={theme.COLORS.RED}
+            style={{paddingLeft: 16}}
           />
         </Pressable>
       </TrackInfoContainer>
