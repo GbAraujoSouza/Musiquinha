@@ -4,9 +4,10 @@ import { RegularText, SemiboldText } from "../../theme/globalFonts";
 export const Container = styled.View`
   background-color: ${({ theme }) => theme.COLORS.BASE};
   padding: 0 32px;
+  height: 100%;
 `;
 
-export const HeaderContainer = styled.ScrollView`
+export const HeaderContainer = styled.View`
   display: flex;
   flex-direction: column;
   padding-bottom: 16px;

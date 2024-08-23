@@ -13,22 +13,12 @@ import DefaultSongImage from "../../assets/default-song-cover.png";
 import { ActivityIndicator, FlatList, Pressable, View } from "react-native";
 import TrackPlayer, { Track } from "react-native-track-player";
 import SongService from "../../services/SongService";
+import mapSongToTrack from "../../helpers/mapSongToTrack";
 
 interface TopSongProps {
   track: Track;
   onTrackSelect: (track: Track) => void;
 }
-
-const mapSongToTrack = (song: Song): Track => {
-  return {
-    id: song.id,
-    url: song.songPublicUrl,
-    title: song.title,
-    artist: song.artist.name,
-    artwork: DefaultSongImage,
-    album: song.album ? song.album : undefined,
-  };
-};
 
 const handleTrackSelect = async (track: Track) => {
   await TrackPlayer.load(track);
