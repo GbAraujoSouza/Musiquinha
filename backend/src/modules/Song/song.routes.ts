@@ -3,8 +3,6 @@ import { Router } from "express";
 import { SongController } from "./song.controller";
 import multer from "multer";
 import passport from "passport";
-import { CheckOwnerMiddleware } from "../../middlewares/check-owner.middleware";
-// import upload from "../../config/file";
 
 const storage = multer.memoryStorage();
 const upload = multer({ storage: storage });
@@ -44,9 +42,8 @@ router.put(
 );
 
 router.get(
-  `${baseUrl}/favorites/:userId`,
+  `${baseUrl}/favorites`,
   passport.authenticate("jwt", { session: false }),
-  CheckOwnerMiddleware.checkOwner,
   SongController.getFavorites,
 );
 
@@ -63,11 +60,9 @@ router.get(
 );
 
 router.delete(
-  `${baseUrl}/:songId/user/:userId`,
+  `${baseUrl}/:songId/user`,
   passport.authenticate("jwt", { session: false }),
-  CheckOwnerMiddleware.checkOwner,
   SongController.deleteSong,
 );
 
 export const songRouter = router;
-

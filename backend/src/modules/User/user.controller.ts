@@ -53,7 +53,7 @@ export class UserController {
 
   public static async show(request: Request, response: Response) {
     try {
-      const { userId } = request.params;
+      const userId = request.user as string;
 
       const user = await UserService.show(userId);
 
@@ -72,7 +72,7 @@ export class UserController {
     try {
       const { name, email } = request.body;
 
-      const { userId } = request.params;
+      const userId = request.user as string;
 
       await UserService.update(userId, name, email);
 
@@ -87,7 +87,7 @@ export class UserController {
 
   public static async deleteUser(request: Request, response: Response) {
     try {
-      const { userId } = request.params;
+      const userId = request.user as string;
 
       await UserService.deleteUser(userId);
 
