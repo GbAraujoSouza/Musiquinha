@@ -20,7 +20,6 @@ export const useSetupTrackPlayer = ({ onLoad }: { onLoad?: () => void }) => {
     })
     .catch((error) => {
         isInitialized.current = false;
-        // TODO show a toast
         console.log(error);
       });
   }, [onLoad]);

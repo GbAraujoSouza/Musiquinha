@@ -6,6 +6,7 @@ import AuthService from "../services/AuthService";
 import { NavigationProp, useNavigation } from "@react-navigation/native";
 import { Text } from "react-native";
 import axios from "axios";
+import { Toast } from "toastify-react-native";
 
 interface AuthContextValue {
   user: UserProfile | null;
@@ -16,12 +17,6 @@ interface AuthContextValue {
   loginUser: (email: string, password: string) => void;
   logout: () => void;
 }
-//
-// export interface RootStackParamList {
-//   Register: undefined;
-//   Login: undefined;
-//   Home: undefined;
-// };
 
 const AuthContext = createContext<AuthContextValue | null>(null);
 
@@ -42,7 +37,6 @@ const AuthProvider = ({ children }: React.PropsWithChildren) => {
       if (user && token) {
         setUser(JSON.parse(user));
         setAuthorizationToken("Bearer ".concat(token));
-        // axios.defaults.headers.common["Authorization"] = `Bearer ${token}`;
       }
 
       setIsReady(true);
@@ -59,11 +53,10 @@ const AuthProvider = ({ children }: React.PropsWithChildren) => {
     await AuthService.register({ name, email, password })
       .then((response) => {
         if (response?.status === 201) {
-          // toast.success("Successfully Registered");
           navigation.navigate("Login" as never);
         }
       })
-      .catch((e) => console.log("Server error ocurred"));
+      .catch((e) => console.log("Server error ocurred", e));
   };
 
   const loginUser = async (email: string, password: string) => {
@@ -78,11 +71,6 @@ const AuthProvider = ({ children }: React.PropsWithChildren) => {
           setAuthorizationToken(response.data.token);
           setUser(response.data.user);
 
-          // axios.defaults.headers.common["Authorization"] =
-          //   `Bearer ${response.data.token}`;
-
-          // toast.success("Login Success!");
-          // navigation.navigate("Home" as never);
           navigation.navigate("Main" as never);
         }
       })

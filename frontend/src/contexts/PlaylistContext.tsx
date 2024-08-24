@@ -8,6 +8,7 @@ import React, {
 import { useAuth } from "./AuthContext";
 import PlaylistService from "../services/PlaylistService";
 import { Playlist } from "../models/playlist";
+import { Toast } from "toastify-react-native";
 
 interface PlaylistsContextValue {
   playlists: Playlist[];
