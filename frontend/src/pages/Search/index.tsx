@@ -9,9 +9,6 @@ import { Container, NoResultsImage, SearchPageContent } from "./styles";
 import TrackList from "../../components/TrackList";
 import { RegularText } from "../../theme/globalFonts";
 import EmptySearchImage from "../../assets/empty-search.png";
-import { Image } from "expo-image";
-import FocusAwareStatusBar from "../../components/FocusAwareStatusBar";
-import theme from "../../theme";
 
 const SearchScreen: React.FC = () => {
   const [searchTerm, setSearchTerm] = useState("");

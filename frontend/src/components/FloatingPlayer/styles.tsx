@@ -1,5 +1,6 @@
 import styled from "styled-components/native";
-import { SemiboldText } from "../../theme/globalFonts";
+import { BoldText, RegularText, SemiboldText } from "../../theme/globalFonts";
+import { Image } from "expo-image";
 
 export const TrackTitle = styled(SemiboldText)`
   font-size: 18px;
@@ -52,4 +53,43 @@ export const TrackInfoContainer = styled.View`
 export const TrackInfo = styled.View`
   display: flex;
   flex-direction: column;
+`;
+
+export const PlaylistName = styled(RegularText)`
+  color: ${({ theme }) => theme.COLORS.BASE};
+`;
+
+export const PlaylistImage = styled(Image)`
+  width: 64px;
+  height: 64px;
+  border-radius: 8px;
+`;
+
+export const AddToPlaylistTitleContainer = styled.View`
+  justify-content: space-between;
+  flex-direction: row;
+`;
+
+export const AddToPlaylistTitle = styled(BoldText)`
+  color: ${({ theme }) => theme.COLORS.BASE};
+  font-size: 22px;
+`;
+
+export const SelectPlaylistPressable = styled.Pressable`
+  display: flex;
+  flex-direction: row;
+  gap: 8px;
+  align-items: center;
+`;
+
+export const PlaylistModalContainer = styled.View`
+  flex: 1;
+  justify-content: flex-end;
+`;
+
+export const PlaylistModalContent = styled.View`
+  background-color: ${({ theme }) => theme.COLORS.BLUE};
+  padding: 20px;
+  border-top-left-radius: 20px;
+  border-top-right-radius: 20px;
 `;

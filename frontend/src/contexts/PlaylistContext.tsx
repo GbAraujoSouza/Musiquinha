@@ -27,8 +27,6 @@ export const PlaylistsProvider = ({ children }: PlaylistsProviderProps) => {
   const [playlists, setPlaylists] = useState<Playlist[]>([]);
 
   const { token } = useAuth();
-
-  useEffect(() => {
     const fetchPlaylists = async () => {
       try {
         const response = await PlaylistService.getPlaylists(token as string);
@@ -38,8 +36,10 @@ export const PlaylistsProvider = ({ children }: PlaylistsProviderProps) => {
       }
     };
 
+  useEffect(() => {
     fetchPlaylists();
-  }, []);
+  }, [playlists]);
+
 
   const addSongToPlaylist = async (playlistId: string, song: Song) => {
     try {
