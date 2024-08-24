@@ -1,0 +1,739 @@
+{
+	"info": {
+		"_postman_id": "968f3635-dff9-407c-becd-d30d155df024",
+		"name": "Musiquinha",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "32419699"
+	},
+	"item": [
+		{
+			"name": "User",
+			"item": [
+				{
+					"name": "Create",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"Regular User\",\n    \"email\": \"example@gmail.com\",\n    \"password\": \"1234\",\n    \"isArtist\": false\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3333/user",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3333",
+							"path": [
+								"user"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Read All Users",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/user/index",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"user",
+								"index"
+							],
+							"query": [
+								{
+									"key": "limit",
+									"value": "0",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Read User",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI3NWE2MWFlNy0xMDg1LTQxMDctOTQ1Yy04YzNlZDFiZjQzMzQiLCJpYXQiOjE3MjQxOTIzNTM0NTEsImV4cCI6MTcyNDE5Mjk1ODI1MX0.GXk45xkvct-RaPNjt6PNAhnGr_z9K13hq4Sa2OsJXFD7n1M5lHHvynHahI-IN00Iq-JZYxp-p-6RV7mx4IgBqYimm-AzvwY3loz-pQQdwW6c7VE75pBwhwQHd6z8b85aKAJtrw4v40TV8Hx63NpOj7kNOTbZm72eOoDB8SgSGtnuFYNQlKNlYbINm7LsidtQou8ET57Xx-_ySl43wsPW8cnCrhjy535FFd8zI3N2S8MFRhYKl0vLRTGjTvVNJbgeVl-_6vsv5km9MW6EpixzIhTtKop374JgjmX-M9IGy1bzT36SUb2jcNluhspXqXUmRJB7nRroLTbjC9nxzVQMI-T57dsYn7krOAHlpilAbib1Uz-swOseLaVZWC0k2a4LUpwJAUM88DQ3vzdu1VTKngeFOZ_46DAWrvu9euIjhxl8nT6pPlCZWWzB7TIM48VxP8dbJU3SxsK8yATjX731F8G-NLUhATkxbjN-yYTeV8-G86lEG7kvXBbOOvMqPjnbQ3tuafJ6_5MZx5BDwxOJz50SQYijmyG2rsOlnx4xs9_PJqXDQsldWO4MExBTMyeoCbdwRudrwj4OfN5JL8TwefAP1rnXOYrVWXCFCgYJVNyhrfeXs1FTCf6vrBOSK2tpjuETJOkS9bMN24ghPL-XnM0k6czGszJcscJqG1dhoSg",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/user/show/75a61ae7-1085-4107-945c-8c3ed1bf4334",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"user",
+								"show",
+								"75a61ae7-1085-4107-945c-8c3ed1bf4334"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update User",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI3NWE2MWFlNy0xMDg1LTQxMDctOTQ1Yy04YzNlZDFiZjQzMzQiLCJpYXQiOjE3MjQxOTIzNTM0NTEsImV4cCI6MTcyNDE5Mjk1ODI1MX0.GXk45xkvct-RaPNjt6PNAhnGr_z9K13hq4Sa2OsJXFD7n1M5lHHvynHahI-IN00Iq-JZYxp-p-6RV7mx4IgBqYimm-AzvwY3loz-pQQdwW6c7VE75pBwhwQHd6z8b85aKAJtrw4v40TV8Hx63NpOj7kNOTbZm72eOoDB8SgSGtnuFYNQlKNlYbINm7LsidtQou8ET57Xx-_ySl43wsPW8cnCrhjy535FFd8zI3N2S8MFRhYKl0vLRTGjTvVNJbgeVl-_6vsv5km9MW6EpixzIhTtKop374JgjmX-M9IGy1bzT36SUb2jcNluhspXqXUmRJB7nRroLTbjC9nxzVQMI-T57dsYn7krOAHlpilAbib1Uz-swOseLaVZWC0k2a4LUpwJAUM88DQ3vzdu1VTKngeFOZ_46DAWrvu9euIjhxl8nT6pPlCZWWzB7TIM48VxP8dbJU3SxsK8yATjX731F8G-NLUhATkxbjN-yYTeV8-G86lEG7kvXBbOOvMqPjnbQ3tuafJ6_5MZx5BDwxOJz50SQYijmyG2rsOlnx4xs9_PJqXDQsldWO4MExBTMyeoCbdwRudrwj4OfN5JL8TwefAP1rnXOYrVWXCFCgYJVNyhrfeXs1FTCf6vrBOSK2tpjuETJOkS9bMN24ghPL-XnM0k6czGszJcscJqG1dhoSg",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "name",
+									"value": "gbaraujosouza",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{base_url}}/user/75a61ae7-1085-4107-945c-8c3ed1bf4334",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"user",
+								"75a61ae7-1085-4107-945c-8c3ed1bf4334"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete User",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI3NWE2MWFlNy0xMDg1LTQxMDctOTQ1Yy04YzNlZDFiZjQzMzQiLCJpYXQiOjE3MjQxOTIzNTM0NTEsImV4cCI6MTcyNDE5Mjk1ODI1MX0.GXk45xkvct-RaPNjt6PNAhnGr_z9K13hq4Sa2OsJXFD7n1M5lHHvynHahI-IN00Iq-JZYxp-p-6RV7mx4IgBqYimm-AzvwY3loz-pQQdwW6c7VE75pBwhwQHd6z8b85aKAJtrw4v40TV8Hx63NpOj7kNOTbZm72eOoDB8SgSGtnuFYNQlKNlYbINm7LsidtQou8ET57Xx-_ySl43wsPW8cnCrhjy535FFd8zI3N2S8MFRhYKl0vLRTGjTvVNJbgeVl-_6vsv5km9MW6EpixzIhTtKop374JgjmX-M9IGy1bzT36SUb2jcNluhspXqXUmRJB7nRroLTbjC9nxzVQMI-T57dsYn7krOAHlpilAbib1Uz-swOseLaVZWC0k2a4LUpwJAUM88DQ3vzdu1VTKngeFOZ_46DAWrvu9euIjhxl8nT6pPlCZWWzB7TIM48VxP8dbJU3SxsK8yATjX731F8G-NLUhATkxbjN-yYTeV8-G86lEG7kvXBbOOvMqPjnbQ3tuafJ6_5MZx5BDwxOJz50SQYijmyG2rsOlnx4xs9_PJqXDQsldWO4MExBTMyeoCbdwRudrwj4OfN5JL8TwefAP1rnXOYrVWXCFCgYJVNyhrfeXs1FTCf6vrBOSK2tpjuETJOkS9bMN24ghPL-XnM0k6czGszJcscJqG1dhoSg",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "name",
+									"value": "gbaraujosouza",
+									"type": "text",
+									"disabled": true
+								}
+							]
+						},
+						"url": {
+							"raw": "{{base_url}}/user/75a61ae7-1085-4107-945c-8c3ed1bf4334",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"user",
+								"75a61ae7-1085-4107-945c-8c3ed1bf4334"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Auth",
+			"item": [
+				{
+					"name": "Login",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"email\": \"gabriel.ssouzaaraujo109@gmail.com\",\n    \"password\": \"1234\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3333/auth/login",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3333",
+							"path": [
+								"auth",
+								"login"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Song",
+			"item": [
+				{
+					"name": "Favorites",
+					"item": [
+						{
+							"name": "Get Favorites Songs",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI1ZDBlMjhjMi03NGUyLTQyY2YtOTgyOS1mZmJhMDg3MTA5MzQiLCJpYXQiOjE3MjQzNjc3OTM3NjMsImV4cCI6MTcyNDM2ODM5ODU2M30.gDxGkWlEDq3rrnOGW2Hv5AIneVRvNC0D-1zN01AlLkdZfXNR0LrG-LOmL-xBlxM9khaqpBb1MhBtvHBHy6wM8dIJAWMPVYkvJlXIVaLlGn6-OuWGO0NImewjr9hxxKprZMEezcoxrsKTLetiFcOdgF_v1vjZM5tvDmsvKlrl3u2LzQtXwDRTED110-OayhS5j2URTruIrBc6cumR1gvEE6zUzjXrdWMHEsJK5LvQV-E1VQ29OP_k3lIDLD9ehtjJu5exGWsfslZxp6RGHHdzMr3hZaVfPylVxAkZp2-0A42MUMkmO1gij5ONuGMItio2La12dryhV_DVHvJZqoZWTB6a5YED0PBFVRqJmWPTvsW99eFlp2GjcCSqCoY8_MAw_yLomp6I2Wott_pac4JshwqgWWvfgTg9yeJs7yWShrdHk1e4AjtWntLkjY-5wOeFmypZVNdxrQQv__2b2xK7S81gwxK-Q1uDgMs0SGxB0vICqInzzyqcDjP00lJDxB24rFFDvnCrMmsbqyC9O9F_Hq-DNLXUv5v1Rbu5efVyr9OPvJQZs4fijMWTuY9GOcPm0YxLzHAu_SPsbaL9ywHg5DTqpxVNvACf8x_e58su4HmpeTqUo6ZKKzh_Omy1bZaPuvpW8uj3j2ujx5BjcEid4k5QWT_uGDeRBKbqnM-zwXU",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:3333/song/favorites/5d0e28c2-74e2-42cf-9829-ffba08710934",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3333",
+									"path": [
+										"song",
+										"favorites",
+										"5d0e28c2-74e2-42cf-9829-ffba08710934"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Favorite Song",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI3ZmM3Y2ZlZi00M2MzLTRhOWQtOWU3Yi01ODJiOTMwYjIwMmUiLCJpYXQiOjE3MjQyNzI0MDk1NTAsImV4cCI6MTcyNDI3MzAxNDM1MH0.bUmHX22_3L020e4FOXNXUIPG63ZLqnEmfSOuBpl6PJkDuzucrSfaszJObmkAdMs0X0kTtwoq47AD8c0A3cUnjOhot-_wbDceBD6EZjQFDwwAJLXGNdt2f_kHSkSiL3np_oOpHaZ-kjRpQSce3jZya-c8fdNkR-AG3HZJ_L7Fw2jdgpjb4O8IvKzBZU3b09hAYGOFUUJi4iHOBlD1DKmNYfiJXWN_LTGyPjSQl6kLPIaCXnM6AR2KflunUMsHtRnInCHqk3BnuarbcS9hsmFULocUWxkz3_7l6piUH6MJrbFbao1anU7ezdR3pw5QA4d84q-EyxlMppDU7RmHB5k-s77UFOrUiHPHSTscSZT_gS8Q2NN1hLMSkPs3Dk2ZpCRQ4GXO8Io43zz7vAIikzA5wOfMnBRB3N7VqBaHmuHxgJ2rT_Q62mZpfrVEwuMe13Dr5UvILowgqje6gXGxbN8ExT00NnFwDXbOb33Lmu2zxxMh7Of-hpTHXrYCtaVfXMVxH2_7VRpfyGwP-AZRMNy1zIfdIMCqki_my8fX8RQ9DQWfuj-sqMhP6w8dFKX4Y8c-0IK27ZC3nremPbdOlTUxQFm2DkLuM3HTJR-ogGnNik7zSJ0muCcVZi6u3ZCeHWXnpyn9cUeEX_w28pw5NM3eSc9bNwtd6VZ9sZWNHamWSwc",
+											"type": "string"
+										}
+									]
+								},
+								"method": "PUT",
+								"header": [],
+								"url": {
+									"raw": "{{base_url}}/song/favorite-song/c6ffa10d-7f12-4194-a2d8-ae0abf7c0cc9",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"song",
+										"favorite-song",
+										"c6ffa10d-7f12-4194-a2d8-ae0abf7c0cc9"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Unfavorite Song",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI3NWE2MWFlNy0xMDg1LTQxMDctOTQ1Yy04YzNlZDFiZjQzMzQiLCJpYXQiOjE3MjQxOTIzNTM0NTEsImV4cCI6MTcyNDE5Mjk1ODI1MX0.GXk45xkvct-RaPNjt6PNAhnGr_z9K13hq4Sa2OsJXFD7n1M5lHHvynHahI-IN00Iq-JZYxp-p-6RV7mx4IgBqYimm-AzvwY3loz-pQQdwW6c7VE75pBwhwQHd6z8b85aKAJtrw4v40TV8Hx63NpOj7kNOTbZm72eOoDB8SgSGtnuFYNQlKNlYbINm7LsidtQou8ET57Xx-_ySl43wsPW8cnCrhjy535FFd8zI3N2S8MFRhYKl0vLRTGjTvVNJbgeVl-_6vsv5km9MW6EpixzIhTtKop374JgjmX-M9IGy1bzT36SUb2jcNluhspXqXUmRJB7nRroLTbjC9nxzVQMI-T57dsYn7krOAHlpilAbib1Uz-swOseLaVZWC0k2a4LUpwJAUM88DQ3vzdu1VTKngeFOZ_46DAWrvu9euIjhxl8nT6pPlCZWWzB7TIM48VxP8dbJU3SxsK8yATjX731F8G-NLUhATkxbjN-yYTeV8-G86lEG7kvXBbOOvMqPjnbQ3tuafJ6_5MZx5BDwxOJz50SQYijmyG2rsOlnx4xs9_PJqXDQsldWO4MExBTMyeoCbdwRudrwj4OfN5JL8TwefAP1rnXOYrVWXCFCgYJVNyhrfeXs1FTCf6vrBOSK2tpjuETJOkS9bMN24ghPL-XnM0k6czGszJcscJqG1dhoSg",
+											"type": "string"
+										}
+									]
+								},
+								"method": "PUT",
+								"header": [],
+								"url": {
+									"raw": "{{base_url}}/song/unfavorite-song/a15f7952-0430-4c7a-afbf-ade355f986f2",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"song",
+										"unfavorite-song",
+										"a15f7952-0430-4c7a-afbf-ade355f986f2"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Index",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI1ZDBlMjhjMi03NGUyLTQyY2YtOTgyOS1mZmJhMDg3MTA5MzQiLCJpYXQiOjE3MjQzNjc3OTM3NjMsImV4cCI6MTcyNDM2ODM5ODU2M30.gDxGkWlEDq3rrnOGW2Hv5AIneVRvNC0D-1zN01AlLkdZfXNR0LrG-LOmL-xBlxM9khaqpBb1MhBtvHBHy6wM8dIJAWMPVYkvJlXIVaLlGn6-OuWGO0NImewjr9hxxKprZMEezcoxrsKTLetiFcOdgF_v1vjZM5tvDmsvKlrl3u2LzQtXwDRTED110-OayhS5j2URTruIrBc6cumR1gvEE6zUzjXrdWMHEsJK5LvQV-E1VQ29OP_k3lIDLD9ehtjJu5exGWsfslZxp6RGHHdzMr3hZaVfPylVxAkZp2-0A42MUMkmO1gij5ONuGMItio2La12dryhV_DVHvJZqoZWTB6a5YED0PBFVRqJmWPTvsW99eFlp2GjcCSqCoY8_MAw_yLomp6I2Wott_pac4JshwqgWWvfgTg9yeJs7yWShrdHk1e4AjtWntLkjY-5wOeFmypZVNdxrQQv__2b2xK7S81gwxK-Q1uDgMs0SGxB0vICqInzzyqcDjP00lJDxB24rFFDvnCrMmsbqyC9O9F_Hq-DNLXUv5v1Rbu5efVyr9OPvJQZs4fijMWTuY9GOcPm0YxLzHAu_SPsbaL9ywHg5DTqpxVNvACf8x_e58su4HmpeTqUo6ZKKzh_Omy1bZaPuvpW8uj3j2ujx5BjcEid4k5QWT_uGDeRBKbqnM-zwXU",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/song/list-all",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"song",
+								"list-all"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Show",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2OTRhMTYwOC1iNDFmLTQzYmYtYWY0Ny1iMTBhY2M2MGZkM2MiLCJpYXQiOjE3MjQxODE0NTUwOTgsImV4cCI6MTcyNDE4MjA1OTg5OH0.g85YroV0n-IqxVt3sF18njOyEPO7CRlV9cDe-m1qwwYEGloRnxWcEgvbZ1HXtDEfN0JFZnCMK8mXNAP29CVPRm4vYde8EomDtt_PzKWzqLu7Gv99YwS9buavj63bL53npLhIRC_ywuqPOTTFqaFeZrpBT-cITd9HpXlaYBhRW-NReoFi2cn_KX6vUdbn7_7YP9dCE62pZdLr68REIOP009iVH0k_AOnKjkmvzRFNtal6StOf4dozXdnTJIvlidAQJGsVS6IYmNeZYW7DKNKug3AoKTJMvm-ah6xJolONJaWmWbIMykbNPrCQ7LsIzsC0rPS3_jIVA3c5XdkF5ZZ8tuS840nD5MUd6ON8WFoA-galV4GAXJE4If9nbZPWJLO3vDpcp3Efu4ySBf4xNXQERcnCznSzXMzGbetkdvRlE48AHwOhAIVgzxc9dIisu_T9Wd6vcPPjNy4v4fm6SxODDuxxOuW0wlnkNGUA7b07Eo_v0SCPMBDklkFWjIJfSa6ubUkfVw641FxF_C8NJ80-MJ05rvjnGFzP75LfWZYsz0k7c1JJgMjbBUlgjemSihsQju_Add_SiUDLFACaykrgj-WpEwnwqWEzSv0ESuJ8OrZf0_WIiwQytO_EbPOJ0UqSpANGWF1wL49cpupWOf_z9cjPk13_UUdgl73XU37t4p8",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3333/song/d516d9bc-469d-499a-9762-21d9155cfcac",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3333",
+							"path": [
+								"song",
+								"d516d9bc-469d-499a-9762-21d9155cfcac"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI1ZDBlMjhjMi03NGUyLTQyY2YtOTgyOS1mZmJhMDg3MTA5MzQiLCJpYXQiOjE3MjQzNjc3OTM3NjMsImV4cCI6MTcyNDM2ODM5ODU2M30.gDxGkWlEDq3rrnOGW2Hv5AIneVRvNC0D-1zN01AlLkdZfXNR0LrG-LOmL-xBlxM9khaqpBb1MhBtvHBHy6wM8dIJAWMPVYkvJlXIVaLlGn6-OuWGO0NImewjr9hxxKprZMEezcoxrsKTLetiFcOdgF_v1vjZM5tvDmsvKlrl3u2LzQtXwDRTED110-OayhS5j2URTruIrBc6cumR1gvEE6zUzjXrdWMHEsJK5LvQV-E1VQ29OP_k3lIDLD9ehtjJu5exGWsfslZxp6RGHHdzMr3hZaVfPylVxAkZp2-0A42MUMkmO1gij5ONuGMItio2La12dryhV_DVHvJZqoZWTB6a5YED0PBFVRqJmWPTvsW99eFlp2GjcCSqCoY8_MAw_yLomp6I2Wott_pac4JshwqgWWvfgTg9yeJs7yWShrdHk1e4AjtWntLkjY-5wOeFmypZVNdxrQQv__2b2xK7S81gwxK-Q1uDgMs0SGxB0vICqInzzyqcDjP00lJDxB24rFFDvnCrMmsbqyC9O9F_Hq-DNLXUv5v1Rbu5efVyr9OPvJQZs4fijMWTuY9GOcPm0YxLzHAu_SPsbaL9ywHg5DTqpxVNvACf8x_e58su4HmpeTqUo6ZKKzh_Omy1bZaPuvpW8uj3j2ujx5BjcEid4k5QWT_uGDeRBKbqnM-zwXU",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "song",
+									"type": "file",
+									"src": "/home/gbaraujosouza/Music/Ne-Yo - So Sick (Official Music Video).mp3"
+								},
+								{
+									"key": "title",
+									"value": "So sick",
+									"type": "text"
+								},
+								{
+									"key": "artistId",
+									"value": "5d0e28c2-74e2-42cf-9829-ffba08710934",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{base_url}}/song",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"song"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Search Songs",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI3ZmM3Y2ZlZi00M2MzLTRhOWQtOWU3Yi01ODJiOTMwYjIwMmUiLCJpYXQiOjE3MjQyNzI0MDk1NTAsImV4cCI6MTcyNDI3MzAxNDM1MH0.bUmHX22_3L020e4FOXNXUIPG63ZLqnEmfSOuBpl6PJkDuzucrSfaszJObmkAdMs0X0kTtwoq47AD8c0A3cUnjOhot-_wbDceBD6EZjQFDwwAJLXGNdt2f_kHSkSiL3np_oOpHaZ-kjRpQSce3jZya-c8fdNkR-AG3HZJ_L7Fw2jdgpjb4O8IvKzBZU3b09hAYGOFUUJi4iHOBlD1DKmNYfiJXWN_LTGyPjSQl6kLPIaCXnM6AR2KflunUMsHtRnInCHqk3BnuarbcS9hsmFULocUWxkz3_7l6piUH6MJrbFbao1anU7ezdR3pw5QA4d84q-EyxlMppDU7RmHB5k-s77UFOrUiHPHSTscSZT_gS8Q2NN1hLMSkPs3Dk2ZpCRQ4GXO8Io43zz7vAIikzA5wOfMnBRB3N7VqBaHmuHxgJ2rT_Q62mZpfrVEwuMe13Dr5UvILowgqje6gXGxbN8ExT00NnFwDXbOb33Lmu2zxxMh7Of-hpTHXrYCtaVfXMVxH2_7VRpfyGwP-AZRMNy1zIfdIMCqki_my8fX8RQ9DQWfuj-sqMhP6w8dFKX4Y8c-0IK27ZC3nremPbdOlTUxQFm2DkLuM3HTJR-ogGnNik7zSJ0muCcVZi6u3ZCeHWXnpyn9cUeEX_w28pw5NM3eSc9bNwtd6VZ9sZWNHamWSwc",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/song/search-songs?title=Mir",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"song",
+								"search-songs"
+							],
+							"query": [
+								{
+									"key": "title",
+									"value": "Mir"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Read Top Songs",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI3ZmM3Y2ZlZi00M2MzLTRhOWQtOWU3Yi01ODJiOTMwYjIwMmUiLCJpYXQiOjE3MjQyOTk5NjEyOTMsImV4cCI6MTcyNDMwMDU2NjA5M30.WxKA7qCCs9aPGmCRFnpruMd9HKJyB3QDvBuwBy74yGwPXZhjZBcbiOwt5E-zEIE6RaQZ7A-Wr6-oHxmJQ7q7CAyduXdq8yTgxVfEA-q4hrEO60Xybh90y79Mlbeffus1Ubi8iMOs7IpJglR93GuzevsmhRmRbnxzon_gkXQR-AJQ-Ju1Z_RxugH47uVG9hcSscBOKEaXQsPKWSBS2zqALbFqb-pNB5EVS_MHJBBc6Rw6lVc_5vEkugMimT-HBOsUCkvp8r6BPASUlv_Z99xLTp8EOWxJUwlB-azFRYhJRPLf_3Hf4XshskPSqNzMfGfW4FKlMZzN_thMU-4Mgp2K_s5geUeFo6qVyU_A_pJTDQuoRhFGAzGXIv_1gfqhi7uS-2MhoVItsLkP1_lHhwNxzz9qd3mkxIkUTGIn3FaEZJgF8ZLbJvj1J64ebi_MiGOt43YeKErp-nvwzMoFU-j7es2OELAxtF3BKRH0vAjyXPF0rFGI2R26rXLbaFwafa2Ach-IykrZE7GVlPf3FHigcG-Qvk5fuLwzQ8RgOZ8euCYtf924P7N97kyidiCK08ftc1l52y82Xw1oUKBjZp9IicZaVxTxIIiq4IqLRcu4yYwNAS1-dIQcqLN38WGnj8UOGGPMI68Uiy2UAQtP6v2RkqBn5hphHDz8LlFWtkUOoeM",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/song/ordered-by-likes",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"song",
+								"ordered-by-likes"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI1ZDBlMjhjMi03NGUyLTQyY2YtOTgyOS1mZmJhMDg3MTA5MzQiLCJpYXQiOjE3MjQzNjc3OTM3NjMsImV4cCI6MTcyNDM2ODM5ODU2M30.gDxGkWlEDq3rrnOGW2Hv5AIneVRvNC0D-1zN01AlLkdZfXNR0LrG-LOmL-xBlxM9khaqpBb1MhBtvHBHy6wM8dIJAWMPVYkvJlXIVaLlGn6-OuWGO0NImewjr9hxxKprZMEezcoxrsKTLetiFcOdgF_v1vjZM5tvDmsvKlrl3u2LzQtXwDRTED110-OayhS5j2URTruIrBc6cumR1gvEE6zUzjXrdWMHEsJK5LvQV-E1VQ29OP_k3lIDLD9ehtjJu5exGWsfslZxp6RGHHdzMr3hZaVfPylVxAkZp2-0A42MUMkmO1gij5ONuGMItio2La12dryhV_DVHvJZqoZWTB6a5YED0PBFVRqJmWPTvsW99eFlp2GjcCSqCoY8_MAw_yLomp6I2Wott_pac4JshwqgWWvfgTg9yeJs7yWShrdHk1e4AjtWntLkjY-5wOeFmypZVNdxrQQv__2b2xK7S81gwxK-Q1uDgMs0SGxB0vICqInzzyqcDjP00lJDxB24rFFDvnCrMmsbqyC9O9F_Hq-DNLXUv5v1Rbu5efVyr9OPvJQZs4fijMWTuY9GOcPm0YxLzHAu_SPsbaL9ywHg5DTqpxVNvACf8x_e58su4HmpeTqUo6ZKKzh_Omy1bZaPuvpW8uj3j2ujx5BjcEid4k5QWT_uGDeRBKbqnM-zwXU",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/song/52da2f33-84ec-491f-aa2b-da05bd5acd1e/user/5d0e28c2-74e2-42cf-9829-ffba08710934",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"song",
+								"52da2f33-84ec-491f-aa2b-da05bd5acd1e",
+								"user",
+								"5d0e28c2-74e2-42cf-9829-ffba08710934"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Playlist",
+			"item": [
+				{
+					"name": "Create playlist",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI1ZDBlMjhjMi03NGUyLTQyY2YtOTgyOS1mZmJhMDg3MTA5MzQiLCJpYXQiOjE3MjQ0MzMwNDI3NTQsImV4cCI6MTcyNDQzMzY0NzU1NH0.lhO5xGGMoWTWauX5DI5HHiZTxmb1_lsaywhW9PHhYnCn_D3YLMBFiuibHpQD_e0eE2hTQfsrzLyDLC89a7KRbhhdBiEXl8Sa3TElJHlH9jvzogTPmrDDLqjdYT8frMjlX9HGvExuHhU2MlzR1NrGSrOUFihx_JPdZCBS8zpfj2zfVWBkI5ePzzWZF4O62DbOB4sODAxknvj8JxtIMoV9vHKHAtnE66kCuVJopjkbUR70MLW-n3J53irJDqVD2ILHd9XEuttooXOlNJ7QSrvenlvGmQk4t957ypOJUaZj8T1ydlWm3T3ls6HsP6jLf9oDNtAuTN-2jsTB_IN8fuBtv_TIb8Dgs14yvU3pXTW4Z9ajShJ1mmweOEWP4OUYLy8I9xjVihbechUNiyj7wn2KHxk_FPnTI42zb4s4xdgEmhbTI9THxbrfZTLCo8OKLzvYFJStM6trmb9U456IR825xHZ4OcsELECedbWTLcqDkfc4bh_GRJwKEH1Fnt2Sm1JUpofqp3EoBXNDaxbGRxGHNsX_JOJOlYjGCXQFFz91pBGjOQG5d_wBxGpJQI--sY-hj9yBiRFNDnwA94o4dNo0Y1ot7bsPMeOz3MSGGmc7DSzICpmsLGfACXDVdKyx8vWsk8-j8-i0LoOWpOLZ3aCL6ctYLx15Hb_QhB6qIr8Da8M",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "name",
+									"value": "Pagode Bom",
+									"type": "text"
+								},
+								{
+									"key": "description",
+									"value": "Melhor playlist de pagode",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{base_url}}/playlist",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"playlist"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "index playlist",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI1ZDBlMjhjMi03NGUyLTQyY2YtOTgyOS1mZmJhMDg3MTA5MzQiLCJpYXQiOjE3MjQ0MzMwNDI3NTQsImV4cCI6MTcyNDQzMzY0NzU1NH0.lhO5xGGMoWTWauX5DI5HHiZTxmb1_lsaywhW9PHhYnCn_D3YLMBFiuibHpQD_e0eE2hTQfsrzLyDLC89a7KRbhhdBiEXl8Sa3TElJHlH9jvzogTPmrDDLqjdYT8frMjlX9HGvExuHhU2MlzR1NrGSrOUFihx_JPdZCBS8zpfj2zfVWBkI5ePzzWZF4O62DbOB4sODAxknvj8JxtIMoV9vHKHAtnE66kCuVJopjkbUR70MLW-n3J53irJDqVD2ILHd9XEuttooXOlNJ7QSrvenlvGmQk4t957ypOJUaZj8T1ydlWm3T3ls6HsP6jLf9oDNtAuTN-2jsTB_IN8fuBtv_TIb8Dgs14yvU3pXTW4Z9ajShJ1mmweOEWP4OUYLy8I9xjVihbechUNiyj7wn2KHxk_FPnTI42zb4s4xdgEmhbTI9THxbrfZTLCo8OKLzvYFJStM6trmb9U456IR825xHZ4OcsELECedbWTLcqDkfc4bh_GRJwKEH1Fnt2Sm1JUpofqp3EoBXNDaxbGRxGHNsX_JOJOlYjGCXQFFz91pBGjOQG5d_wBxGpJQI--sY-hj9yBiRFNDnwA94o4dNo0Y1ot7bsPMeOz3MSGGmc7DSzICpmsLGfACXDVdKyx8vWsk8-j8-i0LoOWpOLZ3aCL6ctYLx15Hb_QhB6qIr8Da8M",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/playlist/list-all",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"playlist",
+								"list-all"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Show playlist",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI1ZDBlMjhjMi03NGUyLTQyY2YtOTgyOS1mZmJhMDg3MTA5MzQiLCJpYXQiOjE3MjQ0MzMwNDI3NTQsImV4cCI6MTcyNDQzMzY0NzU1NH0.lhO5xGGMoWTWauX5DI5HHiZTxmb1_lsaywhW9PHhYnCn_D3YLMBFiuibHpQD_e0eE2hTQfsrzLyDLC89a7KRbhhdBiEXl8Sa3TElJHlH9jvzogTPmrDDLqjdYT8frMjlX9HGvExuHhU2MlzR1NrGSrOUFihx_JPdZCBS8zpfj2zfVWBkI5ePzzWZF4O62DbOB4sODAxknvj8JxtIMoV9vHKHAtnE66kCuVJopjkbUR70MLW-n3J53irJDqVD2ILHd9XEuttooXOlNJ7QSrvenlvGmQk4t957ypOJUaZj8T1ydlWm3T3ls6HsP6jLf9oDNtAuTN-2jsTB_IN8fuBtv_TIb8Dgs14yvU3pXTW4Z9ajShJ1mmweOEWP4OUYLy8I9xjVihbechUNiyj7wn2KHxk_FPnTI42zb4s4xdgEmhbTI9THxbrfZTLCo8OKLzvYFJStM6trmb9U456IR825xHZ4OcsELECedbWTLcqDkfc4bh_GRJwKEH1Fnt2Sm1JUpofqp3EoBXNDaxbGRxGHNsX_JOJOlYjGCXQFFz91pBGjOQG5d_wBxGpJQI--sY-hj9yBiRFNDnwA94o4dNo0Y1ot7bsPMeOz3MSGGmc7DSzICpmsLGfACXDVdKyx8vWsk8-j8-i0LoOWpOLZ3aCL6ctYLx15Hb_QhB6qIr8Da8M",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/playlist/1adb0a9e-ac76-4181-8e70-e14e77b0ea02/user/5d0e28c2-74e2-42cf-9829-ffba08710934",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"playlist",
+								"1adb0a9e-ac76-4181-8e70-e14e77b0ea02",
+								"user",
+								"5d0e28c2-74e2-42cf-9829-ffba08710934"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update playlist",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI1ZDBlMjhjMi03NGUyLTQyY2YtOTgyOS1mZmJhMDg3MTA5MzQiLCJpYXQiOjE3MjQ0MzMwNDI3NTQsImV4cCI6MTcyNDQzMzY0NzU1NH0.lhO5xGGMoWTWauX5DI5HHiZTxmb1_lsaywhW9PHhYnCn_D3YLMBFiuibHpQD_e0eE2hTQfsrzLyDLC89a7KRbhhdBiEXl8Sa3TElJHlH9jvzogTPmrDDLqjdYT8frMjlX9HGvExuHhU2MlzR1NrGSrOUFihx_JPdZCBS8zpfj2zfVWBkI5ePzzWZF4O62DbOB4sODAxknvj8JxtIMoV9vHKHAtnE66kCuVJopjkbUR70MLW-n3J53irJDqVD2ILHd9XEuttooXOlNJ7QSrvenlvGmQk4t957ypOJUaZj8T1ydlWm3T3ls6HsP6jLf9oDNtAuTN-2jsTB_IN8fuBtv_TIb8Dgs14yvU3pXTW4Z9ajShJ1mmweOEWP4OUYLy8I9xjVihbechUNiyj7wn2KHxk_FPnTI42zb4s4xdgEmhbTI9THxbrfZTLCo8OKLzvYFJStM6trmb9U456IR825xHZ4OcsELECedbWTLcqDkfc4bh_GRJwKEH1Fnt2Sm1JUpofqp3EoBXNDaxbGRxGHNsX_JOJOlYjGCXQFFz91pBGjOQG5d_wBxGpJQI--sY-hj9yBiRFNDnwA94o4dNo0Y1ot7bsPMeOz3MSGGmc7DSzICpmsLGfACXDVdKyx8vWsk8-j8-i0LoOWpOLZ3aCL6ctYLx15Hb_QhB6qIr8Da8M",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "name",
+									"value": "O pagode",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:3333/playlist/b90130b4-bd03-4ee8-bd83-a4b368366b7f",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3333",
+							"path": [
+								"playlist",
+								"b90130b4-bd03-4ee8-bd83-a4b368366b7f"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete playlist",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI1ZDBlMjhjMi03NGUyLTQyY2YtOTgyOS1mZmJhMDg3MTA5MzQiLCJpYXQiOjE3MjQ0MzMwNDI3NTQsImV4cCI6MTcyNDQzMzY0NzU1NH0.lhO5xGGMoWTWauX5DI5HHiZTxmb1_lsaywhW9PHhYnCn_D3YLMBFiuibHpQD_e0eE2hTQfsrzLyDLC89a7KRbhhdBiEXl8Sa3TElJHlH9jvzogTPmrDDLqjdYT8frMjlX9HGvExuHhU2MlzR1NrGSrOUFihx_JPdZCBS8zpfj2zfVWBkI5ePzzWZF4O62DbOB4sODAxknvj8JxtIMoV9vHKHAtnE66kCuVJopjkbUR70MLW-n3J53irJDqVD2ILHd9XEuttooXOlNJ7QSrvenlvGmQk4t957ypOJUaZj8T1ydlWm3T3ls6HsP6jLf9oDNtAuTN-2jsTB_IN8fuBtv_TIb8Dgs14yvU3pXTW4Z9ajShJ1mmweOEWP4OUYLy8I9xjVihbechUNiyj7wn2KHxk_FPnTI42zb4s4xdgEmhbTI9THxbrfZTLCo8OKLzvYFJStM6trmb9U456IR825xHZ4OcsELECedbWTLcqDkfc4bh_GRJwKEH1Fnt2Sm1JUpofqp3EoBXNDaxbGRxGHNsX_JOJOlYjGCXQFFz91pBGjOQG5d_wBxGpJQI--sY-hj9yBiRFNDnwA94o4dNo0Y1ot7bsPMeOz3MSGGmc7DSzICpmsLGfACXDVdKyx8vWsk8-j8-i0LoOWpOLZ3aCL6ctYLx15Hb_QhB6qIr8Da8M",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3333/playlist/7d45b1d2-c378-4bfa-a5b5-8f8406b8f975",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3333",
+							"path": [
+								"playlist",
+								"7d45b1d2-c378-4bfa-a5b5-8f8406b8f975"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Add song to playlist",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI1ZDBlMjhjMi03NGUyLTQyY2YtOTgyOS1mZmJhMDg3MTA5MzQiLCJpYXQiOjE3MjQ0MzMwNDI3NTQsImV4cCI6MTcyNDQzMzY0NzU1NH0.lhO5xGGMoWTWauX5DI5HHiZTxmb1_lsaywhW9PHhYnCn_D3YLMBFiuibHpQD_e0eE2hTQfsrzLyDLC89a7KRbhhdBiEXl8Sa3TElJHlH9jvzogTPmrDDLqjdYT8frMjlX9HGvExuHhU2MlzR1NrGSrOUFihx_JPdZCBS8zpfj2zfVWBkI5ePzzWZF4O62DbOB4sODAxknvj8JxtIMoV9vHKHAtnE66kCuVJopjkbUR70MLW-n3J53irJDqVD2ILHd9XEuttooXOlNJ7QSrvenlvGmQk4t957ypOJUaZj8T1ydlWm3T3ls6HsP6jLf9oDNtAuTN-2jsTB_IN8fuBtv_TIb8Dgs14yvU3pXTW4Z9ajShJ1mmweOEWP4OUYLy8I9xjVihbechUNiyj7wn2KHxk_FPnTI42zb4s4xdgEmhbTI9THxbrfZTLCo8OKLzvYFJStM6trmb9U456IR825xHZ4OcsELECedbWTLcqDkfc4bh_GRJwKEH1Fnt2Sm1JUpofqp3EoBXNDaxbGRxGHNsX_JOJOlYjGCXQFFz91pBGjOQG5d_wBxGpJQI--sY-hj9yBiRFNDnwA94o4dNo0Y1ot7bsPMeOz3MSGGmc7DSzICpmsLGfACXDVdKyx8vWsk8-j8-i0LoOWpOLZ3aCL6ctYLx15Hb_QhB6qIr8Da8M",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/playlist/b90130b4-bd03-4ee8-bd83-a4b368366b7f/add-song/49479d47-9b45-4b47-b3f2-a935e729a7ea",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"playlist",
+								"b90130b4-bd03-4ee8-bd83-a4b368366b7f",
+								"add-song",
+								"49479d47-9b45-4b47-b3f2-a935e729a7ea"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Remove song from playlist",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI1ZDBlMjhjMi03NGUyLTQyY2YtOTgyOS1mZmJhMDg3MTA5MzQiLCJpYXQiOjE3MjQ0MzMwNDI3NTQsImV4cCI6MTcyNDQzMzY0NzU1NH0.lhO5xGGMoWTWauX5DI5HHiZTxmb1_lsaywhW9PHhYnCn_D3YLMBFiuibHpQD_e0eE2hTQfsrzLyDLC89a7KRbhhdBiEXl8Sa3TElJHlH9jvzogTPmrDDLqjdYT8frMjlX9HGvExuHhU2MlzR1NrGSrOUFihx_JPdZCBS8zpfj2zfVWBkI5ePzzWZF4O62DbOB4sODAxknvj8JxtIMoV9vHKHAtnE66kCuVJopjkbUR70MLW-n3J53irJDqVD2ILHd9XEuttooXOlNJ7QSrvenlvGmQk4t957ypOJUaZj8T1ydlWm3T3ls6HsP6jLf9oDNtAuTN-2jsTB_IN8fuBtv_TIb8Dgs14yvU3pXTW4Z9ajShJ1mmweOEWP4OUYLy8I9xjVihbechUNiyj7wn2KHxk_FPnTI42zb4s4xdgEmhbTI9THxbrfZTLCo8OKLzvYFJStM6trmb9U456IR825xHZ4OcsELECedbWTLcqDkfc4bh_GRJwKEH1Fnt2Sm1JUpofqp3EoBXNDaxbGRxGHNsX_JOJOlYjGCXQFFz91pBGjOQG5d_wBxGpJQI--sY-hj9yBiRFNDnwA94o4dNo0Y1ot7bsPMeOz3MSGGmc7DSzICpmsLGfACXDVdKyx8vWsk8-j8-i0LoOWpOLZ3aCL6ctYLx15Hb_QhB6qIr8Da8M",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/playlist/b90130b4-bd03-4ee8-bd83-a4b368366b7f/add-song/49479d47-9b45-4b47-b3f2-a935e729a7ea",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"playlist",
+								"b90130b4-bd03-4ee8-bd83-a4b368366b7f",
+								"add-song",
+								"49479d47-9b45-4b47-b3f2-a935e729a7ea"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}

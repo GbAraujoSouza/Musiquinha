@@ -81,8 +81,9 @@ npx prisma migrate dev
 
 ```
 
-Também é preciso configurar o .env com o Postgres e o Amazon S3.
-Exemplo padrão: 
+Também é preciso configurar o .env com o Postgres e o AWS S3. Nesta ultima, ao criar um novo Bucket e configurar as permissões de acesso, é necessário adicionar um access key e colocar seus valores no aquivo .env. Os nomes das variáveis `AWS_ACCESS_KEY_ID` e `AWS_SECRET_ACCESS_KEY` não devem ser alterados, pois são reconhecidos por padrão pelo S3-Client-SDK
+
+Template do arquivo .env: 
 ```
 postgresql://user:password@host:port/dbname?schema=public
 
@@ -93,6 +94,7 @@ AWS_ACCESS_KEY_ID=""
 AWS_SECRET_ACCESS_KEY=""
 
 ```
+
  
 ## Uso
 
@@ -102,7 +104,7 @@ Ainda na pasta `backend`, execute o seguinte comando para servir o aplicativo em
 npm run start
 ```
 
-Com as configurações feitas, mude a seguir para a pasta `frontend`, para a execução do aplicativo utilizando o **Expo**. É necessário ter um emulador de um dispositivo android, como o **Android Studio**. Para a execução em ambiente android, utilize os comandos:
+Com as configurações feitas, mude a seguir para a pasta `frontend`, para a execução do aplicativo utilizando o **Expo**. É necessário ter um emulador de um dispositivo android ou IOS, como o **Android Studio**, pois o projeto utiliza bibliotecas que não são suportadas pelo Expo go. Para a execução em ambiente android, utilize os comandos:
 
 
 ``` bash
