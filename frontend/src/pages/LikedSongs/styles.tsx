@@ -1,5 +1,5 @@
 import styled from "styled-components/native";
-import { RegularText, SemiboldText } from "../../theme/globalFonts";
+import { SemiboldText } from "../../theme/globalFonts";
 
 export const Container = styled.View`
   background-color: ${({ theme }) => theme.COLORS.BASE};

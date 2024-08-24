@@ -1,14 +1,9 @@
-import { Image } from "expo-image";
-import { FlatList, Modal, Pressable, View } from "react-native";
-import { useActiveTrack } from "react-native-track-player";
-import DefaultSongCover from "../../assets/default-song-cover.png";
 import {
   AddToPlaylistTitle,
   AddToPlaylistTitleContainer,
   PlaylistImage,
   PlaylistModalContainer,
   PlaylistModalContent,
-  PlaylistModelContainer,
   PlaylistName,
   SelectPlaylistPressable,
   StyledPressable,
@@ -18,6 +13,9 @@ import {
   TrackInfoContainer,
   TrackTitle,
 } from "./styles";
+import { Image } from "expo-image";
+import { FlatList, Modal, Pressable } from "react-native";
+import { useActiveTrack } from "react-native-track-player";
 import { PlayPauseButton, SkipToNextButton } from "../PlayerControls";
 import { useLastActiveTrack } from "../../hooks/useLastActiveTrack";
 import { FontAwesome, MaterialIcons } from "@expo/vector-icons";
@@ -27,8 +25,6 @@ import { usePlaylists } from "../../contexts/PlaylistContext";
 import { useState } from "react";
 import PlaylistService from "../../services/PlaylistService";
 import { useAuth } from "../../contexts/AuthContext";
-import { BoldText, RegularText, SemiboldText } from "../../theme/globalFonts";
-import { PlaylistItemImage } from "../PlaylistListItem/styles";
 import { images } from "../../constants";
 import { ItemDivider } from "../TrackList/styles";
 
@@ -64,7 +60,7 @@ const FloatingPlayer = () => {
     <StyledPressable>
       <TrackInfoContainer>
         <Image
-          source={displayTrack.artwork ?? DefaultSongCover}
+          source={displayTrack.artwork ?? images.DefaultSongCover}
           style={{ width: 50, height: 50, borderRadius: 8 }}
         />
 

@@ -28,14 +28,10 @@ export default {
 
   async register(data: RegisterData) {
     try {
-      const response = api.post<UserProfile>(
-        "/user",
-        data,
-      );
+      const response = api.post<UserProfile>("/user", data);
       return response;
     } catch (error) {
       handleError(error);
     }
   },
 };
-

@@ -3,10 +3,6 @@ import TrackPlayer, { useIsPlaying } from "react-native-track-player";
 import { FontAwesome6 } from "@expo/vector-icons";
 import theme from "../../theme";
 
-interface PlayerControlProps {
-  style?: ViewStyle;
-}
-
 interface PlayerButtonProps {
   style?: ViewStyle;
   iconSize?: number;

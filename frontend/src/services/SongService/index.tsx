@@ -17,9 +17,7 @@ export default {
     }
   },
 
-  async getFavorites(
-    token: string,
-  ): Promise<AxiosPromise<any> | null> {
+  async getFavorites(token: string): Promise<AxiosPromise<any> | null> {
     try {
       const response = api.get(`/song/favorites`, {
         headers: {

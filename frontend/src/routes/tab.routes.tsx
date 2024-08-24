@@ -1,15 +1,11 @@
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { icons } from "../constants";
-
 import Home from "../pages/Home";
 import Search from "../pages/Search";
-import { View, StyleSheet } from "react-native";
+import { View } from "react-native";
 import theme from "../theme";
 import { SvgProps } from "react-native-svg";
 import { LibraryStackRoutes } from "./stack.routes";
-import Library from "../pages/Library";
-import LikedSongs from "../pages/LikedSongs";
-import Register from "../pages/Register";
 
 const Tab = createBottomTabNavigator();
 
@@ -53,7 +49,7 @@ export default function TabRoutes() {
         name="Home"
         component={Home}
         options={{
-          tabBarIcon: ({ color, size, focused }) => (
+          tabBarIcon: ({ color, focused }) => (
             <TabIcon icon="home" color={color} focused={focused} />
           ),
         }}
@@ -63,7 +59,7 @@ export default function TabRoutes() {
         name="Search"
         component={Search}
         options={{
-          tabBarIcon: ({ color, size, focused }) => (
+          tabBarIcon: ({ color, focused }) => (
             <TabIcon icon="search" color={color} focused={focused} />
           ),
         }}
@@ -71,10 +67,9 @@ export default function TabRoutes() {
 
       <Tab.Screen
         name="Library"
-        
         component={LibraryStackRoutes}
         options={{
-          tabBarIcon: ({ color, size, focused }) => (
+          tabBarIcon: ({ color, focused }) => (
             <TabIcon icon="library" color={color} focused={focused} />
           ),
         }}

@@ -1,6 +1,5 @@
 import { NavigationContainer } from "@react-navigation/native";
-import { AuthStackRoutes, LibraryStackRoutes } from "./stack.routes";
-import { createNativeStackNavigator } from "@react-navigation/native-stack";
+import { AuthStackRoutes } from "./stack.routes";
 import AuthProvider, { useAuth } from "../contexts/AuthContext";
 import FloatingPlayer from "../components/FloatingPlayer";
 import TabRoutes from "./tab.routes";

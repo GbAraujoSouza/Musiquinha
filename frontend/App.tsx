@@ -1,4 +1,3 @@
-import { StatusBar } from "expo-status-bar";
 import {
   Poppins_400Regular,
   Poppins_500Medium,
@@ -14,13 +13,8 @@ import theme from "./src/theme";
 import Routes from "./src/routes";
 import { SafeAreaProvider } from "react-native-safe-area-context";
 import { SafeAreaView } from "react-native";
-// import "react-toastify/dist/ReactToastify.css";
-import { NavigationContainer } from "@react-navigation/native";
-import AuthProvider from "./src/contexts/AuthContext";
-// import { ToastContainer } from "react-toastify";
 import { useSetupTrackPlayer } from "./src/hooks/useSetupTrackPlayer";
 import { useLogTrackPlayerState } from "./src/hooks/useLogTrackPlayerState";
-import FloatingPlayer from "./src/components/FloatingPlayer";
 
 SplashScreen.preventAutoHideAsync();
 
@@ -63,7 +57,7 @@ export default function App() {
   return (
     <ThemeProvider theme={theme}>
       <SafeAreaProvider>
-        <SafeAreaView style={{ flex: 1, backgroundColor: "#000"}}>
+        <SafeAreaView style={{ flex: 1 }}>
           <Routes />
         </SafeAreaView>
       </SafeAreaProvider>

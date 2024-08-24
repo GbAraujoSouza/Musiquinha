@@ -1,8 +1,7 @@
 import React from "react";
 import { Container, HeaderImage, HeaderInfo, HeaderTitle } from "./styles";
-import DefaultUserProfile from "../../assets/default-user-profile.png";
 import { Pressable, View } from "react-native";
-import { icons } from "../../constants";
+import { icons, images } from "../../constants";
 import { useAuth } from "../../contexts/AuthContext";
 
 interface HeaderProps {
@@ -15,7 +14,7 @@ const Header = ({ text }: HeaderProps) => {
   return (
     <Container>
       <HeaderInfo>
-        <HeaderImage source={DefaultUserProfile} />
+        <HeaderImage source={images.DefaultUserProfile} />
         <HeaderTitle>{text}</HeaderTitle>
       </HeaderInfo>
 

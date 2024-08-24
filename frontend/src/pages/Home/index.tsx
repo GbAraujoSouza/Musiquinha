@@ -9,12 +9,11 @@ import {
 } from "./styles";
 import Header from "../../components/Header";
 import { useAuth } from "../../contexts/AuthContext";
-import DefaultSongImage from "../../assets/default-song-cover.png";
-import { ActivityIndicator, FlatList, Pressable, View } from "react-native";
+import { FlatList, Pressable } from "react-native";
 import TrackPlayer, { Track } from "react-native-track-player";
 import SongService from "../../services/SongService";
 import mapSongToTrack from "../../helpers/mapSongToTrack";
-import theme from "../../theme";
+import { images } from "../../constants";
 
 interface TopSongProps {
   track: Track;
@@ -30,7 +29,7 @@ const TopSong = ({ track, onTrackSelect }: TopSongProps) => {
   return (
     <Pressable onPress={() => onTrackSelect(track)}>
       <TopSongContainer>
-        <TopSongImage source={track.artwork ?? DefaultSongImage} />
+        <TopSongImage source={track.artwork ?? images.DefaultSongCover} />
         <SemiboldText>{track.title}</SemiboldText>
         <RegularText>{track.artist}</RegularText>
       </TopSongContainer>

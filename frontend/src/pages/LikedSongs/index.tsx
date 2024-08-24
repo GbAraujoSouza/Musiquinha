@@ -7,7 +7,7 @@ import SongService from "../../services/SongService";
 import mapSongToTrack from "../../helpers/mapSongToTrack";
 
 const LikedSongs = () => {
-  const { user, token } = useAuth();
+  const { token } = useAuth();
 
   const [songs, setSongs] = useState<Track[]>([]);
 
@@ -26,7 +26,6 @@ const LikedSongs = () => {
 
     fetchTopSongs();
   }, []);
-
 
   return (
     <Container>

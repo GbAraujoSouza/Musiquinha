@@ -1,11 +1,16 @@
 import { TouchableHighlight, View } from "react-native";
-import { TrackArtistText, TrackItemContainer, TrackItemImage, TrackTitleText } from "./styles";
+import {
+  TrackArtistText,
+  TrackItemContainer,
+  TrackItemImage,
+  TrackTitleText,
+} from "./styles";
 import { Track, useActiveTrack } from "react-native-track-player";
-import DefaultSongCover from  "../../assets/default-song-cover.png";
+import { images } from "../../constants";
 
 interface TrackListItemProps {
   track: Track;
-  onTrackSelect: (track: Track) => void
+  onTrackSelect: (track: Track) => void;
 }
 
 const TrackListItem = ({ track, onTrackSelect }: TrackListItemProps) => {
@@ -16,13 +21,15 @@ const TrackListItem = ({ track, onTrackSelect }: TrackListItemProps) => {
       <TrackItemContainer>
         <View>
           <TrackItemImage
-            source={track.artwork ?? DefaultSongCover}
+            source={track.artwork ?? images.DefaultSongCover}
             $isActiveTrack={isActiveTrack}
           />
         </View>
 
         <View>
-          <TrackTitleText $isActiveTrack={isActiveTrack} numberOfLines={1}>{track.title}</TrackTitleText>
+          <TrackTitleText $isActiveTrack={isActiveTrack} numberOfLines={1}>
+            {track.title}
+          </TrackTitleText>
           <TrackArtistText numberOfLines={1}>
             {track.artist ?? "Unknown"}
           </TrackArtistText>

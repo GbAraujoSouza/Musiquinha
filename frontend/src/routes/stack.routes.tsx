@@ -1,11 +1,9 @@
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
-
 import Library from "../pages/Library";
 import LikedSongs from "../pages/LikedSongs";
 import Login from "../pages/Login";
 import Register from "../pages/Register";
 import TabRoutes from "./tab.routes";
-import theme from "../theme";
 import PlaylistDetails from "../pages/PlaylistDetails";
 
 const LibraryStack = createNativeStackNavigator();
