@@ -2,11 +2,8 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 import React, { createContext, useEffect, useState } from "react";
 import { UserProfile } from "../models/user";
 import AuthService from "../services/AuthService";
-// import { toast } from "react-toastify";
-import { NavigationProp, useNavigation } from "@react-navigation/native";
+import { useNavigation } from "@react-navigation/native";
 import { Text } from "react-native";
-import axios from "axios";
-import { Toast } from "toastify-react-native";
 
 interface AuthContextValue {
   user: UserProfile | null;
@@ -46,8 +43,8 @@ const AuthProvider = ({ children }: React.PropsWithChildren) => {
   }, []);
 
   const registerUser = async (
-    email: string,
     name: string,
+    email: string,
     password: string,
   ) => {
     await AuthService.register({ name, email, password })
