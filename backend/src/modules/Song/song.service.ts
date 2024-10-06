@@ -8,7 +8,7 @@ import {
   DeleteObjectCommand,
 } from "@aws-sdk/client-s3";
 import { getSignedUrl } from "@aws-sdk/s3-request-presigner";
-import crypto from "crypto";
+import SongUtils from "../../utils/songUtils";
 
 interface SongWithPublicUrl extends Song {
   songPublicUrl: string;
@@ -26,8 +26,9 @@ export class SongService {
 
   private static s3 = new S3Client({ region: this.bucketRegion });
 
-  private static randomSongName = (bytes: number = 32) =>
-    crypto.randomBytes(bytes).toString("hex");
+  public static getS3() {
+    return this.s3;
+  }
 
   public static async appendPublicSongUrl(songs: Song[]) {
     const songsWithPublicUrls: SongWithPublicUrl[] = [];
@@ -53,7 +54,7 @@ export class SongService {
     file: Express.Multer.File,
     artistId: string,
   ) {
-    const songName = this.randomSongName();
+    const songName = SongUtils.randomSongName();
 
     const params = {
       Bucket: this.bucketName,
