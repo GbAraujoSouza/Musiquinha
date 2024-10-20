@@ -27,6 +27,7 @@ import PlaylistService from "../../services/PlaylistService";
 import { useAuth } from "../../contexts/AuthContext";
 import { images } from "../../constants";
 import { ItemDivider } from "../TrackList/styles";
+import { MovingText } from "../MovingText";
 
 const FloatingPlayer = () => {
   const activeTrack = useActiveTrack();
@@ -65,10 +66,13 @@ const FloatingPlayer = () => {
         />
 
         <TrackInfo>
-          <TrackTitle>{displayTrack.title}</TrackTitle>
+          <MovingText text={displayTrack.title} />
           <TrackArtist>{displayTrack.artist ?? "Unknown"}</TrackArtist>
         </TrackInfo>
 
+      </TrackInfoContainer>
+
+      <TrackControlsContainer>
         <Pressable onPress={() => toggleFavorite(displayTrack.id)}>
           <FontAwesome
             name={isFavorite(displayTrack.id) ? "heart" : "heart-o"}
@@ -77,9 +81,6 @@ const FloatingPlayer = () => {
             style={{ paddingLeft: 16 }}
           />
         </Pressable>
-      </TrackInfoContainer>
-
-      <TrackControlsContainer>
         <Pressable onPress={() => setModalVisible(true)}>
           <MaterialIcons
             name="playlist-add"
